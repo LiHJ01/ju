@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			//1, 找出下面字符串中的bag,beg,big,bog, 忽略大小写, 并将其改为bug:
+			//I am a Big man, I have so mach bag, so veryone call 
+			//me  beg man,  bog bog bog, I hate you!
+//          var str = "I am a Big man, I have so mach bag, so veryone call me  beg man,  bog bog bog, I hate you!";
+//          var t = str.replace(/b.g/gi,"bug");
+//          console.log(t);
+
+//          var str = "Billy tried really hard Sally tried really really hard Timmy tried really really really hard Johnny tried really really really really hard";
+//          str = str.replace(/really/gi,"very");
+//          str = str.replace(/very very/gi,"very");
+//          str = str.replace(/very very/gi,"very");
+//          console.log(str);
+
+            window.onload = function(){
+            	var ip = document.getElementsByTagName("input")[0];
+            	var but = document.getElementById("but");
+            	var wb = document.getElementById("wenben");
+            	but.onclick = function(){
+                    var b = "/"+ip.value+"/gi";
+            		b = eval(b);
+            		var c = wb.value;
+            		var a = c.replace(b,"**");
+            		wb.value = a;
+            	}
+            }
+		</script>
+	</head>
+	<body>
+		<input type="text"/>
+		<button id="but">替换</button>
+		<br/>
+		<br/>
+		<textarea id="wenben"></textarea>
+	</body>
+</html>
