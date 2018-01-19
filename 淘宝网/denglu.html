@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/denglu.css" type="text/css" rel="stylesheet"/>
+		<script src="js/move.js"></script>
+		<script src="js/cookie.js"></script>
+		<script src="js/jquery-1.12.0.js"></script>
+		<script type="text/javascript">
+		     window.onload = function(){
+		        var box2_02 = document.getElementById("box2_02");
+		        var box2_03 = document.getElementById("box2_03");
+		        var img1 = document.getElementById("img1");
+		        var img2 = document.getElementById("img2");
+		        var ma = document.getElementById("ma");
+		        var mad = document.getElementById("mad");
+		        var ma_02 = document.getElementById("ma_02");
+		        img1.onclick = function(){
+		            box2_02.style.display="none";
+		            box2_03.style.display="block";
+		        }
+		        img1.onmouseover = function(){
+		        	move(img1,"opacity",1,30);
+		        }
+		        img1.onmouseout = function(){
+		        	move(img1,"opacity",0.7,30);
+		        }
+		        img2.onmouseover = function(){
+		        	move(img2,"opacity",1,30);
+		        }
+		        img2.onmouseout = function(){
+		        	move(img2,"opacity",0.7,30);
+		        }
+		        img2.onclick = function(){
+		            box2_02.style.display="block";
+		            box2_03.style.display="none";
+		        }
+		        ma.onmouseover = function(){
+		        	move(ma,"left",0,50);
+		        	move(ma_02,"opacity",1,100);
+		        }
+		        mad.onmouseleave = function(){
+                    move(ma,"left",65,50);
+                    move(ma_02,"opacity",0,30);
+		        }
+		        var mfzc = document.querySelectorAll(".mfzc"); 
+		     }
+		     $(function(){
+            	$(".denglu_01").on("click",function(){
+            		if($(".dl_01").val()=="" && $(".dl_01").val()==""){
+            			$(".cuowu").css("display","block");
+            			$(".cwu_02").html("请输入账号和密码");
+            		}else{
+            			if($(".dl_01").val()!=getCookie("name") && $(".dl_02").val()!=getCookie("pass")){
+            				$(".cuowu").css("display","block");
+            			    $(".cwu_02").html("输入有误");
+            			}
+            			if($(".dl_01").val()==getCookie("name") && $(".dl_02").val()==getCookie("pass")){
+            				$(".cuowu").css("display","none");
+            				setCookie("chuan",$(".dl_01").val());
+	            			open("shouye.html");
+	            		}else{
+	            		    if($(".dl_01").val()!=getCookie("name") && $(".dl_02").val()==getCookie("pass")){
+	            		    	$(".cuowu").css("display","block");
+            			        $(".cwu_02").html("账号输入有误！");
+	            		    }
+	            		    if($(".dl_01").val()==getCookie("name") && $(".dl_02").val()!=getCookie("pass")){
+	            		    	$(".cuowu").css("display","block");
+            			        $(".cwu_02").html("密码输入有误！");
+	            		    }
+	            		}
+            		}
+            	});
+		     })
+		</script>
+	</head>
+	<body>
+		<div class="box1">
+			<div class="bo1">
+			    <div class="box1_01"><img src="img/logo.jpg" title="淘宝网" alt="淘宝网"/></div>
+			    <div class="box1_02"><p>为确保您账户的安全及正常使用，依《网络安全法》相关要求，6月1日起会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！</p></div>
+			    <div class="box1_03"><img src="img/xinxi.jpg"/><a>"登录界面"改进建议</a></div>
+		    </div>
+		</div>
+		
+		<div class="box2">
+			<div class="bo2">
+				<div class="box2_01">
+					<img src="img/baoza.jpg"/>
+					<div class="imgdj"></div>
+				</div>
+				<div class="box2_02" id="box2_02">
+					<div class="denglu">
+						<h4>密码登录</h4>
+						<ul>
+							<li><img src="img/ren.jpg"/><input type="text" placeholder="会员名/邮箱/手机号" class="dl_01"/></li>
+							<li><img src="img/shuo.jpg"/><input type="password" class="dl_02"/></li>
+						</ul>
+					</div>
+					<div class="denglu_01">登&nbsp;录</div>
+					<div class="wbzf">
+						<ul>
+							<li><img src="img/wb.jpg"/><a href="#">微博登录</a></li>
+							<li><img src="img/zf.jpg"/><a href="#">支付宝登录</a></li>
+						</ul>
+					</div>
+					<div class="wjzc">
+						<ul>
+							<li><a href="#">忘记密码</a></li>
+							<li><a href="#">忘记会员名</a></li>
+							<li><a href="zhuce.html">免费注册</a></li>
+						</ul>
+					</div>
+				    <div class="kuang">
+				    	<img src="img/dun.jpg"/>
+				    	<span>扫码登录更安全</span>
+				    </div>
+				    <div class="tuma"><img src="img/erweima.png" id="img1"/></div>
+				    <div class="cuowu"><span class="cwu_01">—</span><span class="cwu_02"></span></div>
+				</div>
+				<div class="box2_03" id="box2_03">
+					<div class="denglu">
+						<h4>手机扫码，安全登录</h4>
+					</div>
+				    <!--<div class="kuang">
+				    	<img src="img/dun.jpg"/>
+				    	<span>扫码登录更安全</span>
+				    </div>-->
+				    <div id="mad">
+				         <div id="ma"><img src="img/erweima.jpg"/></div>
+				         <div id="ma_02"><img src="img/sma1.png"/></div>
+				     </div>
+				    <div class="tuma2"><img src="img/dian.png" id="img2"/></div>
+				    <div class="ma_02">
+				         <span>打开 <a href="#">手机淘宝</a>&nbsp;|&nbsp;<a href="#">手机天猫</a> 扫一扫登录</span>
+				    </div>
+				    <div class="ma_03"><img src="img/sao.jpg"/></div>
+				    <div class="ma_04">
+				         <a href="#">密码登录</a>
+				         <a href="zhuce.html">免费注册</a>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box3">
+			<div class="bo3">
+				<div class="box3_01">
+					<div class="wenben">
+						<ul>
+							<li><a href="#">阿里巴巴集团</a></li>
+							<li><a href="#">阿里巴巴国际站</a></li>
+							<li><a href="#">阿里巴巴中国站</a></li>
+							<li><a href="#">全球速卖通</a></li>
+							<li><a href="#">淘宝网</a></li>
+							<li><a href="#">天猫</a></li>
+							<li><a href="#">聚划算</a></li>
+							<li><a href="#">一淘</a></li>
+							<li><a href="#">阿里妈妈</a></li>
+							<li><a href="#">飞猪</a></li>
+							<li><a href="#">虾米</a></li>
+							<li><a href="#">阿里云计算</a></li>
+							<li><a href="#">云OS</a></li>
+							<li><a href="#">万网</a></li>
+							<li><a href="#">支付宝</a></li>
+							<li><a href="#">来往</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="box3_02">
+					<ul>
+						<li><a href="#">关于淘宝</a></li>
+						<li><a href="#">合作伙伴</a></li>
+						<li><a href="#">营销中心</a></li>
+						<li><a href="#">廉正举报</a></li>
+						<li><a href="#">联系客服</a></li>
+						<li><a href="#">开放平台</a></li>
+						<li><a href="#">诚征英才</a></li>
+						<li><a href="#">联系我们</a></li>
+						<li><a href="#">网站地图</a></li>
+						<li><a href="#">法律声明及隐私权政策</a></li>
+					</ul>
+				</div>
+				<div class="box3_03">&copy; 2017 Taobao.com 版权所有</div>
+				<div class="box3_04">
+					<ul>
+						<li>网络文化经营许可证：<a href="#">文网文[2010]040号</a></li>
+						<li>增值电信业务经营许可证：浙B2-20080224-1</li>
+						<li>信息网络传播视听节目许可证：1109364号</li>
+					</ul>
+				</div>
+				<div class="box3_05"><img src="img/jh.jpg"/></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,409 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "微软雅黑";
+	background-color: #f3f3f3;
+}
+.box1{
+	width: 1231px;
+	height: 32px;
+	margin: 0 auto;
+	/*background-color: #f3f3f3;*/
+	position: relative;
+}
+.a1{
+	position: absolute;
+	top: 10px;
+}
+.a2{
+	position: absolute;
+	top: 10px;
+	right: 206px;
+}
+.box1 a{
+	text-decoration: none;
+	display: block;
+	float: left;
+	height: 13px;
+	font-size: 13px;
+	border-right: 2px solid #046cbb;
+	line-height: 13px;
+	padding: 0 10px;
+	color: #046cbb;
+}
+.box1 a:last-child{
+	border: none;
+}
+.a3{
+	width: 190px;
+	height: 22px;
+	border: 1px solid #084e84;
+	position: absolute;
+	right: 0px;
+	top: 4px;
+}
+.a3 input{
+	width: 150px;
+	position: absolute;
+	top: 3px;
+	right: 35px;
+	outline: medium;
+	border: none;
+	text-indent: 6px;
+	background-color: #f3f3f3;
+}
+.a3 img{
+	position: absolute;
+	right: 20px;
+	top: 4px;
+}
+.box2{
+	width: 100%;
+	height: 184px;
+	background-color: #003e6d;
+}
+.a4{
+	width: 1231px;
+	height: 144px;
+	margin: 0 auto;
+}
+.a4 img{
+	width: 1231px;
+	height: 144px;
+	margin: 0 auto;
+}
+.box3{
+	width: 100%;
+	height: 44px;
+	background-color: #0084d7;
+}
+.box4{
+	width: 1231px;
+	height: 666px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	margin-top: -84px;
+	position: relative;
+}
+.box4_01{
+	width: 1202px;
+	height: 44px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+.box4_01 li{
+	list-style: none;
+	display: block;
+	float: left;
+	width: 119px;
+	height: 43px;
+	text-align: center;
+	line-height: 43px;
+}
+.box4_01 a{
+	text-decoration: none;
+	display: block;
+	float: left;
+	width: 119px;
+	height: 43px;
+	background-color: #ebeceb;
+	margin-left: 1px;
+	color: black;
+}
+.box4_01 a:hover{
+	background-color: #003e6d;
+	color: white;
+}
+.box4_02{
+	width: 810px;
+	height: 309px;
+	position: absolute;
+	top: 75px;
+	left: 17px;
+}
+.box4_03{
+	width: 380px;
+	height: 302px;
+	position: absolute;
+	top: 75px;
+	right: 15px;
+}
+.sp{
+	width: 380px;
+	height: 33px;
+	background-color: #003e6d;
+}
+.sp span{
+	width: 105px;
+	height: 33px;
+	display: inline-block;
+	text-align: center;
+	line-height: 33px;
+	font-size: 17px;
+	color: white;
+	cursor: pointer;
+}
+.sp span:hover{
+	background-color: #1970b1;
+}
+.ui a{
+	text-decoration: none;
+	color: #000000;
+}
+.ui ul{
+	padding-left: 20px;
+}
+.ui li{
+	height: 32px;
+	font-size: 15px;
+}
+.ui span{
+	height: 32px;
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	color: #b2c2c2;
+}
+.ks{
+	width: 379px;
+	height: 240px;
+	position: absolute;
+	top: 400px;
+	right: 15px;
+}
+.ks_1 span{
+	width: 379px;
+	height: 34px;
+	display: inline-block;
+	background-color: #975e97;
+	line-height: 34px;
+	color: #ffffff;
+}
+.ks_2 ul{
+	width: 390px;
+	margin-top: 20px;
+}
+.ks_2 li{
+	list-style: none;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: #009999;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.ks_2 li:hover{
+	color: #0084D7;
+	background-color: #7FFF00;
+}
+.ks_2 a{
+	text-decoration: none;
+	color: white;
+}
+.box4_04{
+	width: 379px;
+	position: absolute;
+	top: 400px;
+	left: 15px;
+}
+.xida_01{
+	width: 379px;
+	height: 34px;
+	background-color: #1970B1;
+	line-height: 34px;
+	font-size: 16px;
+	color: white;
+	position: relative;
+}
+.gd{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.gd a{
+	text-decoration: none;
+	font-size: 15px;
+	color: white;
+}
+.xida_02 a{
+	text-decoration: none;
+	color: #000000;
+}
+.xida_02 li{
+	height: 32px;
+	font-size: 15px;
+	margin-left: 20px;
+}
+.xida_02 span{
+	display: inline-block;
+	height: 50px;
+	position: absolute;
+	right: 0px;
+	color: #99a2c2;
+}
+.box4_05{
+	width: 415px;
+	position: absolute;
+	top: 400px;
+	left: 408px;
+}
+.mt{
+	width: 415px;
+	height: 34px;
+	background-color: #209e88;
+	line-height: 34px;
+	font-size: 16px;
+	color: white;
+	position: relative;
+}
+.mt_2{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.mt_2 a{
+	text-decoration: none;
+	color: white;
+}
+.wb li{
+	height: 32px;
+	font-size: 15px;
+	margin-left: 20px;
+}
+.wb a{
+	text-decoration: none;
+	color: black;
+}
+.wb span{
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	color: #99a2c2;
+}
+.box5{
+	width: 1231px;
+	height: 104px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	margin-top: 15px;
+	position: relative;
+}
+.duotu{
+	position: absolute;
+	top: 20px;
+	left: 10px;
+}
+.duotu img{
+	margin: 0px 5px;
+}
+.erweima{
+	position: absolute;
+	right: 15px;
+	top: 15px
+}
+.pian{
+	position: absolute;
+	top: 0px;
+	left: -40px;
+	cursor: pointer;
+}
+.box6{
+	width: 1231px;
+	height: 60px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	margin-top: 15px;
+	position: relative;
+}
+.box6_01 a{
+	text-decoration: none;
+	color: white;
+	display: inline-block;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	background-color: #023964;
+	position: absolute;
+	top: 16px;
+	left: 16px;
+}
+.box6_02{
+	position: absolute;
+	top: 19px;
+	left: 107px;
+}
+.box6_02 select{
+	width: 150px;
+	height: 22px;
+}
+.box7{
+	width: 100%;
+	height: 128px;
+	background-color: #003e6d;
+    margin-top: 15px;
+    border-top: 8px solid #0084d8;
+    position: relative;
+}
+.box7_01{
+	position: absolute;
+	top: 25px;
+	left: 150px;
+}
+.box7_01 li{
+	list-style: none;
+	display: inline-block;
+	/*width: 150px;*/
+	text-align: center;
+	padding-right: 75px;
+}
+.box7_01 a{
+	text-decoration: none;
+	color: white;
+	font-size: 12px;
+}
+.box8{
+	width: 100%;
+	height: 233px;
+	background-color: #f3f3f3;
+	position: relative;
+}
+.box8_01{
+	font-size: 13px;
+	text-align: center;
+	position: absolute;
+	top: 22px;
+	left: 500px;
+}
+.box8_01 p{
+	display: block;
+	height: 25px;
+}
+.box8_02{
+	position: absolute;
+	top: 104px;
+	left: 690px;
+}
+.box8_03{
+	font-size: 13px;
+	color: #939393;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	left: 600px;
+	bottom: 23px;
+}
+.box8_03 span{
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+}
+.box8_03 img{
+	vertical-align: middle;
+}

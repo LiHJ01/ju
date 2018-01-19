@@ -1,0 +1,433 @@
+*{
+				margin: 0;
+				padding: 0;
+			}
+			.box1{
+				width: 100%;
+				height: 68px;
+				border-top: 2px solid black;
+			}
+			.bo1{
+				width: 1203px;
+				height: 68px;
+				margin:  0 auto;
+				position: relative;
+			}
+			.box1_01{
+				width: 110px;
+				height: 43px;
+				cursor: pointer;
+				position: absolute;
+				top: 5px;
+			}
+			.box1_02{
+				width: 901px;
+				height: 28px;
+				border: 1px solid #ffb4a8;
+				background-color: #fef2f2;
+				position: absolute;
+				left: 203px;
+				top: 5px;
+			}
+			.box1_02 p{
+				width: 901px;
+				height: 28px;
+				text-align: center;
+				line-height: 28px;
+				font-size: 12px;
+				color: #6c6c6c;
+			}
+			.box1_03{
+				width: 128px;
+				height: 15px;
+				line-height: 15px;
+				position: absolute;
+				right: 0px;
+				bottom: 8px;
+				cursor: pointer;
+			}
+			.box1_03:hover a{
+				color: #FF4400;
+			}
+			.box1_03 img{
+				vertical-align: text-bottom;
+			}
+			.box1_03 a{
+				font-size: 12px;
+				margin-left: 3px;
+				color: #6c6c6c;
+			}
+			.box2{
+				width: 100%;
+				height: 600px;
+				background-color: #7f0a75;
+				margin: 0 auto;
+			}
+			.bo2{
+				width: 1203px;
+				height: 600px;
+				margin: 0 auto;
+				position: relative;
+			}
+			.box2_01{
+				width: 982px;
+				height: 600px;
+				position: absolute;
+			}
+			.imgdj{
+				width: 637px;
+				height: 453px;
+				position: absolute;
+				top: 80px;
+				left: 85px;
+				cursor: pointer;
+			}
+			.box2_02{
+				width: 351px;
+				height: 351px;
+				background-color: #f3e7f1;
+				position: absolute;
+				left: 796px;
+				top: 120px;
+			}
+			.denglu{
+				width: 305px;
+				height: 154px;
+				position: absolute;
+				left: 25px;
+				top: 33px;
+			}
+			.denglu li{
+				list-style: none;
+				width: 305px;
+				height: 41px;
+				line-height: 41px;
+				margin-top: 20px;
+			}
+			.denglu img{
+				width: 41px;
+				height: 41px;
+				vertical-align: middle;
+			}
+			.denglu input{
+				width: 258px;
+				height: 39px;
+				border: 1px solid #dddddd;
+				outline: medium;
+				text-indent: 1em;
+				font-size: 14px;
+			}
+			.denglu h4{
+				height: 25px;
+			}
+			.denglu_01{
+				width: 300px;
+				height: 42px;
+				background-color: #ff4400;
+				border-radius: 4px;
+				font-size: 18px;
+				text-align: center;
+				line-height: 42px;
+				color: white;
+				position: absolute;
+				top: 204px;
+				left: 26px;
+				cursor: pointer;
+			}
+			.denglu_01:hover{
+				background-color: coral;
+			}
+			.wbzf{
+				position: absolute;
+				left: 2px;
+				top: 270px;
+			}
+			.wbzf li{
+				list-style: none;
+				float: left;
+				margin-left: 24px;
+				cursor: pointer;
+			}
+			.wbzf a{
+				text-decoration: none;
+				font-size: 12px;
+				color: #6c6c6c;
+				margin-left: 4px;
+			}
+			.wbzf li:hover a{
+				color: red;
+			}
+			.wbzf img{
+				vertical-align: middle;
+			}
+			.wjzc{
+				position: absolute;
+				bottom: 27px;
+				right: 36px;
+			}
+			.wjzc li{
+				list-style: none;
+				float: left;
+				margin-left: 15px;
+			}
+			.wjzc a{
+				text-decoration: none;
+				font-size: 12px;
+				color: #6c6c6c;
+			}
+			.wjzc a:hover{
+				color: red;
+			}
+			.kuang{
+				width: 141px;
+				height: 28px;
+				line-height: 26px;
+				text-align: center;
+				border: 1px solid #df9c1f;
+				font-size: 12px;
+				background-color: #fefcee;
+				position: absolute;
+				left: 149px;
+				top: 5px;
+			}
+			.kuang img{
+				vertical-align: text-top;
+				margin-right: 10px;
+			}
+			.kuang span{
+				color: #df9c1f;
+			}
+			.kuang:after{
+				content: "";
+				width: 0px;
+				height: 0px;
+				border: 8px solid transparent;
+				border-left-color: #fefcee;
+				position: absolute;
+				left: 140px;
+				top: 5px;
+			}
+			.kuang:before{
+				content: "";
+				width: 0px;
+				height: 0px;
+				border: 8px solid transparent;
+				border-left-color: #df9c1f;
+				position: absolute;
+				left: 141px;
+				top: 5px;
+			}
+			.tuma{
+			    width: 53px;
+			    height: 53px;
+			    position: absolute;
+			    left: 292px;
+			    top: 5px;
+			    cursor: pointer;
+			    opacity: 0.7;
+			}
+			.cuowu{
+				width: 298px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 13px;
+				background-color: #F3E7F1;
+				border: 1px solid red;
+				position: absolute;
+				top: 36px;
+				left: 25px;
+				display: none;
+			}
+			.cuowu span{
+				vertical-align: middle;
+			}
+			.cwu_01{
+				display: inline-block;
+				width: 17px;
+				height: 17px;
+				font-weight: 800;
+				text-align: center;
+				line-height: 15px;
+				color: white;
+				background-color: #FF4400;
+				border-radius: 17px;
+				margin-left: 15px;
+				margin-right: 15px;
+			}
+			.cwu_02{
+				color: #6C6C6C;
+			}
+			.box2_03{
+				width: 351px;
+				height: 351px;
+				background-color: #f3e7f1;
+				position: absolute;
+				left: 796px;
+				top: 120px;
+				display: none;
+			}
+			#mad{
+				width: 271px;
+				height: 140px;
+				position: absolute;
+				left: 40px;
+				top: 85px;
+			}
+			#ma{
+			    width: 140px;
+			    height: 140px;
+			    position: absolute;
+			    left: 65px;
+			    cursor: pointer;
+			    z-index: 4;
+			}
+			#ma_02{
+				width: 120px;
+				height: 180px;
+				position: absolute;
+				right: -20px;
+				top: -20px;
+				z-index: 1;
+				opacity: 0;
+				cursor: pointer;
+			}
+			.tuma2{
+			   position: absolute;
+			   left: 303px;
+			   top: 5px;
+			   cursor: pointer;
+			   opacity: 0.7;
+			}
+			.ma_02{
+			   width: 145px;
+			   height: 27px;
+			   position: absolute;
+			   top: 246px;
+			   left: 125px;
+			}
+			.ma_02 img{
+			   vertical-align: middle;
+			}
+			.ma_02 span{
+			   font-size: 12px;
+			   color: #9c9c9c;
+			}
+			.ma_02 a{
+			   text-decoration: none;
+			   color: #ff4400;
+			}
+			.ma_03{
+			   position: absolute;
+			   top: 255px;
+			   left: 82px;
+			}
+			.ma_04{
+			   position: absolute;
+			   right: 35px;
+			   bottom: 26px;
+			}
+			.ma_04 a{
+			   text-decoration: none;
+			   font-size: 12px;
+			   color: #6c6c6c;
+			   margin-left: 10px;
+			}
+			.ma_04 a:hover{
+			   color: red;
+			}
+			.box3{
+				width: 100%;
+				height: 230px;
+			}
+			.bo3{
+				width: 1203px;
+				height: 230px;
+				margin: 0 auto;
+				position: relative;
+			}
+            .box3_01{
+            	width: 1203px;
+            	height: 44px;
+            	border-top: 1px solid #dddddd;
+            	border-bottom: 1px solid #dddddd;
+            	position: absolute;
+            	top: 60px;
+            }
+            .wenben{
+            	position: absolute;
+            	top: 15px;
+            }
+            .wenben li{
+            	list-style: none;
+            	float: left;
+            	border-right: 1px solid #e8e0e0;
+            	height: 12px;
+            	line-height: 12px;
+            }
+            .wenben li:last-child{
+            	border: none;
+            }
+            .wenben a{
+            	text-decoration: none;
+            	font-size: 12px;
+				color: #6c6c6c;
+				margin: 0px 8px;
+            }
+            .wenben a:hover{
+            	color: red;
+            }
+            .box3_02{
+            	position: absolute;
+            	top: 115px;
+            	left: 5px;
+            }
+            .box3_02 li{
+            	list-style: none;
+            	float: left;
+            }
+            .box3_02 a{
+            	text-decoration: none;
+            	font-size: 12px;
+				color: #6c6c6c;
+				margin: 0px 3px;
+            }
+            .box3_02 a:hover{
+            	color: red;
+            }
+            .box3_03{
+            	font-size: 12px;
+            	color: #9c9c9c;
+            	position: absolute;
+            	top: 119px;
+            	left: 660px;
+            }
+            .box3_04{
+            	position: absolute;
+            	top: 148px;
+            }
+            .box3_04 li{
+            	list-style: none;
+            	font-size: 12px;
+            	color: #9c9c9c;
+            	float: left;
+            	height: 12px;
+            	line-height: 12px;
+            	border-right: 1px solid #e4dde4;
+            	padding: 0px 5px;
+            }
+            .box3_04 li:last-child{
+            	border: none;
+            }
+            .box3_04 a{
+            	text-decoration: none;
+            	color: #6c6c6c;
+            }
+            .box3_04 a:hover{
+            	color: red;
+            }
+            .box3_05{
+            	position: absolute;
+            	top: 175px;
+            	left: 5px;
+            	cursor: pointer;
+            }

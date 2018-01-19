@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/zhuce.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery-1.12.0.js"></script>
+		<script src="js/cookie.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var yz = document.querySelector(".yz");
+				var yzt = document.querySelector(".yzt");
+				var yzt_01 = document.querySelector(".yzt_01");
+				var yz_sp = document.querySelector(".yz_sp");
+				var yz_p1 = document.querySelector(".yz_p1");
+				var yz_p2 = document.querySelector(".yz_p2");
+				var box3_03 = document.querySelector(".box3_03");
+				yzt.onmousedown = function(evt){
+					var xy = evt||event;
+					var x = xy.clientX;
+					yz.onmousemove = function(evt){
+						var x1y1 = evt||event;
+						var x1 = x1y1.clientX;
+						if(x1-x<=0){
+							yzt.style.left = 0+"px";
+							yzt_01.style.width = 0+"px";
+						}else{
+							yzt.style.left = x1-x+"px";
+							yzt_01.style.width = x1-x+"px";
+						}
+						if(x1-x>=258){
+						    yz_sp.innerHTML ="验证通过";
+						    yz_p2.style.display = "block";
+						    yz_p1.style.display = "none";
+						    yz_sp.style.color = "white";
+						    box3_03.style.backgroundColor = "#FF4001";
+						    box3_03.style.color = "white";
+							yzt.style.left = 258+"px";
+							yzt.onmousedown = null;
+						}else{
+							yz_sp.innerHTML ="请拖动滑块";
+						    yz_p2.style.display = "none";
+						    yz_p1.style.display = "block";
+						    yz_sp.style.color = "#999999";
+						    box3_03.style.backgroundColor = "#e8e8e8";
+						    box3_03.style.color = "#999999";
+						}
+						
+					}
+					document.onmouseup = function(){
+						yz.onmousemove = null; 
+						document.onmouseup = null;
+						if(yzt.offsetLeft>0 && yzt.offsetLeft<258){
+								yzt.style.left = 0+"px";
+                                yzt_01.style.width = 0+"px";
+					    }
+				    }
+				}
+				
+			}
+			$(function(){
+//				输入手机号
+				var ze = /^[1-3]\d{10}$/;
+				$(".box2_02 li:lt(1)").css({"border-bottom":"2px solid #ff4000","color":"black"});
+				$(".box2_02 span:lt(1)").css("background-color","#ff4000");
+				$(".input").on("blur",function(){
+					if($(".input").val().length==""){
+						$(".dc_01").css("display","block");
+						$(".dc_02").css("display","none");
+						$(".dc_03").css("display","none");
+						$(".input").css("border-color","red");
+					}else{
+						if(ze.test($(".input").val())==true){
+						    $(".dc_02").css("display","block");
+						    $(".dc_01").css("display","none");
+						    $(".dc_03").css("display","none");
+						    $(".input").css("border-color","#CCCCCC");
+						}else{
+							$(".dc_03").css("display","block");
+							$(".dc_01").css("display","none");
+							$(".dc_02").css("display","none");
+							$(".input").css("border-color","red");
+						}
+					}
+				})
+				$(".box3_03").on("click",function(){
+					if($(".dc_02").css("display","block") && $(".yz_p2").css("display","block")){
+						$(".box3_06").css("display","block");
+						$(".sjh").html($(".input").val());
+					}
+				});
+				$(".input").on("focusin",function(){
+					$(".input").css("border-color","#28ABFF");
+				})
+				
+//				获取验证码
+                $(".b06_p6").on("click",function(){
+                	$(".b06_p7").css("display","block");
+                	$(".b06_p6").css("display","none");
+                	var miao = 60;
+                	var yzm = setInterval(yz,1000);
+                	function yz(){
+                		miao--;
+                		$(".b06_p10").html(miao);
+                		if(miao==0){
+                			$(".b06_p7").css("display","none");
+                	        $(".b06_p6").css("display","block");
+                            $(".b06_p10").html(60);
+                			clearInterval(yzm);
+                		}
+                	}
+                });
+                $(".b06_p5 input").on("focus",function(){
+                	$(".b06_p5 input").css("border-color","#5AAADF");
+                });
+                 $(".b06_p5 input").on("blur",function(){
+                	$(".b06_p5 input").css("border-color","#999999");
+                });
+                $(".b06_p9").on("click",function(){
+                	$(".box2_02 li:lt(2)").css({"border-bottom":"2px solid #ff4000","color":"black"});
+                	$(".box2_02 span:lt(2)").css("background-color","#ff4000");
+                	$(".dl_span1").html($(".input").val());
+                	$(".box3_06").css("display","none");
+                	$(".box3_07").css("display","block");
+                });
+                
+//              登录名
+                var dl = /^[a-z0-9_-]{6,18}$/;
+                $(".szm_01").on("blur",function(){
+                	if(dl.test($(".szm_01").val())==true){
+                        $(".ner_02").css("display","block");
+                        $(".bfh").css("display","none");
+                	}else{
+                		$(".ner_02").css("display","none");
+                		$(".bfh").css("display","block");
+                		$(".szm_01").css("border-color","red");
+                	}
+                });
+                $(".szm_01").on("focus",function(){
+                	$(".szm_01").css("border-color","#A9A9A9");
+                });
+                $(".szm_02").on("blur",function(){
+                	if($(".szm_01").val()==$(".szm_02").val()){
+                		$(".ner_03").css("display","block");
+                		$(".bfh_01").css("display","none");
+                	}else{
+                		$(".ner_03").css("display","none");
+                		$(".bfh_01").css("display","block");
+                		$(".szm_02").css("border-color","red");
+                	}
+                	if($(".szm_02").val()==""){
+                		$(".ner_03").css("display","none");
+                		$(".bfh_01").css("display","none");
+                	}
+                });
+                $(".szm_02").on("focus",function(){
+                	$(".szm_02").css("border-color","#A9A9A9");
+                });
+//              设置会员名
+                var sz = /^[a-zA-Z0-9_\u4e00-\u9fa5]{5,25}$/;
+                $(".hym").on("blur",function(){
+                	if(sz.test($(".hym").val())==true){
+                		$(".neilian").css("display","none");
+                		$(".ner_01").css("display","block");
+                		$(".hym").css("border-color","#A9A9A9");
+                	}else{
+                		$(".neilian").css("display","block");
+                		$(".ner_01").css("display","none");
+                		$(".hym").css("border-color","red");
+                	}
+                });
+                
+//              提交
+                $(".box3_07_03").on("click",function(){
+                	if(dl.test($(".szm_01").val())==true && sz.test($(".hym").val())==true && $(".szm_01").val()==$(".szm_02").val()){
+                		$(".box2_02 li:lt(3)").css({"border-bottom":"2px solid #ff4000","color":"black"});
+                	    $(".box2_02 span:lt(3)").css("background-color","#ff4000");
+                	    $(".box3_08").css("display","block");
+                	}else{
+                		alert("跳转失败！");
+                	}
+                });
+                
+//              设置支付方式
+                var xm = /^[\u4e00-\u9fa5]/;
+//              真实姓名
+                $(".xm_ip1").on("blur",function(){
+                	if(xm.test($(".xm_ip1").val())==true){
+                		$(".dui_01").html("√");
+                		$(".dui_01").css("background-color","#6BC827");
+                		$(".dui_01").css("display","block");
+                		$(".gs_01").css("display","none");
+                		$(".xm_ip1").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_01").html("×");
+                		$(".dui_01").css("background-color","red");
+                		$(".dui_01").css("display","block");
+                		$(".gs_01").css("display","block");
+                		$(".xm_ip1").css("border-color","red");
+                	}
+                });
+//              身份证号
+                var sfz = /^\d{17}(\d|X)$/i;
+                $(".xm_ip2").on("blur",function(){
+                	if(sfz.test($(".xm_ip2").val())==true){
+                		$(".dui_02").html("√");
+                		$(".dui_02").css("background-color","#6BC827");
+                		$(".dui_02").css("display","block");
+                		$(".gs_02").css("display","none");
+                		$(".xm_ip2").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_02").html("×");
+                		$(".dui_02").css("background-color","red");
+                		$(".dui_02").css("display","block");
+                		$(".gs_02").css("display","block");
+                		$(".xm_ip2").css("border-color","red");
+                	}
+                });
+//              银行卡卡号
+                var yhkh = /^\d{18}$/;
+                $(".xm_ip3").on("blur",function(){
+                	if(yhkh.test($(".xm_ip3").val())==true){
+                		$(".dui_03").html("√");
+                		$(".dui_03").css("background-color","#6BC827");
+                		$(".dui_03").css("display","block");
+                		$(".gs_03").css("display","none");
+                		$(".xm_ip3").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_03").html("×");
+                		$(".dui_03").css("background-color","red");
+                		$(".dui_03").css("display","block");
+                		$(".gs_03").css("display","block");
+                		$(".xm_ip3").css("border-color","red");
+                	}
+                });
+//              手机号码
+                $(".xm_ip4").on("blur",function(){
+                	if(ze.test($(".xm_ip4").val())==true){
+                		$(".dui_04").html("√");
+                		$(".dui_04").css("background-color","#6BC827");
+                		$(".dui_04").css("display","block");
+                		$(".gs_04").css("display","none");
+                		$(".xm_ip4").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_04").html("×");
+                		$(".dui_04").css("background-color","red");
+                		$(".dui_04").css("display","block");
+                		$(".gs_04").css("display","block");
+                		$(".xm_ip4").css("border-color","red");
+                	}
+                });
+//              设置支付宝支付密码
+                var zfmi = /^[a-zA-Z0-9_-]\d{5}$/;
+                $(".xm_ip5").on("blur",function(){
+                	if(zfmi.test($(".xm_ip5").val())==true){
+                		$(".dui_05").html("√");
+                		$(".dui_05").css("background-color","#6BC827");
+                		$(".dui_05").css("display","block");
+                		$(".gs_05").css("display","none");
+                		$(".xm_ip5").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_05").html("×");
+                		$(".dui_05").css("background-color","red");
+                		$(".dui_05").css("display","block");
+                		$(".gs_05").css("display","block");
+                		$(".xm_ip5").css("border-color","red");
+                	}
+                });
+//              确认支付密码
+                $(".xm_ip6").on("blur",function(){
+                	if($(".xm_ip5").val()==$(".xm_ip6").val()){
+                		$(".dui_06").html("√");
+                		$(".dui_06").css("background-color","#6BC827");
+                		$(".dui_06").css("display","block");
+                		$(".gs_06").css("display","none");
+                		$(".xm_ip6").css("border-color","#A9A9A9");
+                	}else{
+                		$(".dui_06").html("×");
+                		$(".dui_06").css("background-color","red");
+                		$(".dui_06").css("display","block");
+                		$(".gs_06").css("display","block");
+                		$(".xm_ip6").css("border-color","red");
+                	}
+                	if($(".xm_ip6").val()==""){
+                		$(".dui_06").html("×");
+                		$(".dui_06").css("background-color","red");
+                		$(".dui_06").css("display","block");
+                		$(".gs_06").css("display","block");
+                		$(".gs_06").html("密码为空");
+                		$(".xm_ip6").css("border-color","red");
+                	}else{
+                		$(".gs_06").html("密码不一致");
+                	}
+                });
+//              确定
+                $(".tg_01").on("click",function(){
+                	if($(".dui_01").html()=="√" && $(".dui_02").html()=="√" && $(".dui_03").html()=="√" && $(".dui_04").html()=="√" && $(".dui_05").html()=="√" && $(".dui_06").html()=="√" && $(".che").is(":checked")){
+                		$(".box2_02 li").css({"border-bottom":"2px solid #ff4000","color":"black"});
+                	    $(".box2_02 span").css("background-color","#ff4000");
+                	    $(".box3_08").css("display","none");
+                	    $(".box3_09").css("display","block");
+                	    $(".cgdlm_01").html($(".input").val());
+                	    $(".cgdlm_02").html($(".xm_ip4").val());
+                	    $(".cgdlm_03").html($(".hym").val());
+                	}else{
+                		$(".box2_02 li:lt(3)").css({"border-bottom":"2px solid #ff4000","color":"black"});
+                	    $(".box2_02 span:lt(3)").css("background-color","#ff4000");
+//              		alert("跳转失败！");
+                	}
+                });
+//              直接跳转
+                $(".tg_02").on("click",function(){
+                	$(".box2_02 li").css({"border-bottom":"2px solid #ff4000","color":"black"});
+                	$(".box2_02 span").css("background-color","#ff4000");
+                	$(".box3_08").css("display","none");
+                	$(".box3_09").css("display","block");
+                	$(".cgdlm_01").html($(".input").val());
+            	    $(".cgdlm_02").html($(".xm_ip4").val());
+            	    $(".cgdlm_03").html($(".hym").val());
+                });
+                setTimeout(function(){
+                	$(".zcxy").css("display","block");
+                },500);
+                $(".xy_01").click(function(){
+                	open("shouye.html");
+                });
+                $(".zcxy_03").click(function(){
+                	$(".zcxy").css("display","none");
+                });
+//              cookie
+                $(".cgqd").on("click",function(){
+                	setCookie("name",$(".input").val());
+		     	    setCookie("pass",$(".szm_02").val());
+                })
+                $(".cgqd").on("click",function(){
+                	open("denglu.html");
+                });
+			})
+		</script>
+	</head>
+	<body>
+		<div id="xiaomi">
+			<img src="img/xiaolian.png"/>
+			<p>有问题？</p>
+			<p>找小蜜</p>
+		</div>
+		<div class="zcxy">
+			<p class="zc_p1"><span>注册协议</span><span class="xy_01">×</span></p>
+			<div class="zcxy_01">
+				<p><strong>【审慎阅读】</strong>您在申请注册流程中点击同意前，应当认真阅读以下协议。<strong style="text-decoration: underline;">请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：</strong></p>
+				<p>1、<strong>与您约定免除或限制责任的条款；</strong></p>
+				<p>2、<strong>与您约定法律适用和管辖的条款；</strong></p>
+				<p>3、<strong>其他以粗体下划线标识的重要条款。</strong></p>
+				<p>如您对协议有任何疑问，可向平台客服咨询。</p>
+				<p>
+					<strong>【特别提示】</strong>当您按照注册页面提示填写信息、阅读并同意协议且完成全部注册程序后，即表示您已充分阅读、理解并接受协议的全部内容。
+					如您因平台服务与淘宝发生争议的，适用《淘宝平台服务协议》处理。如您在使用平台服务过程中与其他用户发生争议的，依您与其他用户达成的协议处理。
+				</p>
+				<p><strong style="text-decoration: underline;">阅读协议的过程中，如果您不同意相关协议或其中任何条款约定，您应立即停止注册程序。</strong></p>
+			</div>
+		    <div class="zcxy_02">
+		    	<p><a href="#">《淘宝平台服务协议》</a></p>
+		    	<p><a href="#">《法律声明及隐私权政策》</a></p>
+		    	<p><a href="#">《支付宝服务协议》</a></p>
+		    </div>
+		    <div class="zcxy_03">同意协议</div>
+		</div>
+		<div class="box1">
+			<div class="box1_01">
+				<div class="qin"><a href="#">亲，请登录</a></div>
+				<div class="qin_01">
+					<a href="#">免费注册</a>
+					<a href="#">手机逛淘宝</a>
+				</div>
+				<div class="ring">
+					<div class="tb"><a href="#">淘宝网首页</a></div>
+					<div class="erji">
+						<ul>
+							<li>
+								<a href="shouye.html" class="abiao">我的淘宝</a><img src="img/xiekuo.jpg"/>
+								<ul>
+									<li>已买到的宝贝</li>
+									<li>我的足迹</li>
+									<li>爱逛街</li>
+									<li>淘宝达人</li>
+									<li>新欢</li>
+								</ul>
+							</li>
+							<li style="background-color: #f5f5f5;"><img src="img/gwc.jpg"/><a href="#" class="abiao">购物车</a><img src="img/xiekou_01.jpg"/></li>
+							<li>
+								<img src="img/xing.jpg"/><a href="#" class="abiao">收藏夹</a>
+								<img src="img/xiekuo.jpg"/>
+								<ul class="list" style="height: 68px;">
+									<li>收藏的宝贝</li>
+									<li>收藏的店铺</li>
+								</ul>
+							</li>
+							<li style="background-color: #f5f5f5;">
+								<a href="#" class="list_02 abiao">商品分类</a>
+							</li>
+							<li>
+								<a href="#" class="abiao">卖家中心</a><img src="img/xiekuo.jpg"/>
+								<ul class="list">
+									<li>免费开店</li>
+									<li>已卖出的宝贝</li>
+									<li>出售中的宝贝</li>
+									<li>卖家服务市场</li>
+									<li>卖家服务中心</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" class="abiao">联系客服</a><img src="img/xiekuo.jpg"/>
+								<ul class="list" style="height: 68px;">
+									<li>消费者客服</li>
+									<li>卖家客服</li>
+								</ul>
+							</li>
+							<li>
+								<img src="img/hang.jpg"/><a href="#" class="abiao">网站导航</a><img src="img/xiekou_01.jpg"/>
+	                            <div class="list_01">
+	                            	<div class="dingwei">
+		                            	<div class="daohang_01">
+		                            		<h4>主题市场</h4>
+		                            		<ul>
+		                            			<li><a href="#">女装</a></li>
+		                            			<li><a href="#">婴童</a></li>
+		                            			<li><a href="#">装修</a></li>
+		                            			<li><a href="#">汽车</a></li>
+		                            			<li><a href="#">生活</a></li>
+		                            			<li><a href="#">运动</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">男装</a></li>
+		                            			<li><a href="#">美妆</a></li>
+		                            			<li><a href="#">建材</a></li>
+		                            			<li><a href="#">数码</a></li>
+		                            			<li><a href="#">学习</a></li>
+		                            			<li><a href="#">户外</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">鞋靴</a></li>
+		                            			<li><a href="#">食品</a></li>
+		                            			<li><a href="#">家居</a></li>
+		                            			<li><a href="#">家电</a></li>
+		                            			<li><a href="#">房产</a></li>
+		                            			<li><a href="#">娱乐</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">箱包</a></li>
+		                            			<li><a href="#">珠宝</a></li>
+		                            			<li><a href="#">百货</a></li>
+		                            			<li><a href="#">游戏</a></li>
+		                            			<li><a href="#">结婚</a></li>
+		                            			<li><a href="#">花鸟</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_02">
+		                            		<h4 style="color: #a9c161;">特色购物</h4>
+		                            		<ul>
+		                            			<li><a href="#">淘宝女人</a></li>
+		                            			<li><a href="#">闲鱼</a></li>
+		                            			<li><a href="#">小微快采</a></li>
+		                            			<li><a href="#">中国制造</a></li>
+		                            			<li><a href="#">天天特价</a></li>
+		                            			<li><a href="#">全民抢拍</a></li>
+		                            			<li><a href="#">淘特来斯</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">淘宝男人</a></li>
+		                            			<li><a href="#">拍卖会</a></li>
+		                            			<li><a href="#">淘宝众筹</a></li>
+		                            			<li><a href="#">淘女郎</a></li>
+		                            			<li><a href="#">试用</a></li>
+		                            			<li><a href="#">淘金币</a></li>
+		                            			<li><a href="#">本地团</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">中老年</a></li>
+		                            			<li><a href="#">全球购</a></li>
+		                            			<li><a href="#">爱逛街</a></li>
+		                            			<li><a href="#">潮电街</a></li>
+		                            			<li><a href="#">清仓</a></li>
+		                            			<li><a href="#">抢新</a></li>
+		                            			<li><a href="#">淘花园</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_03">
+		                            		<h4 style="color: #e066b1;">当地热点</h4>
+		                            		<ul>
+		                            			<li><a href="#">天天中奖</a></li>
+		                            			<li><a href="#">美白修复</a></li>
+		                            			<li><a href="#">海外精品</a></li>
+		                            			<li><a href="#">宅品精选</a></li>
+		                            			<li><a href="#">女装抢新</a></li>
+		                            			<li><a href="#">阿里APP</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">新鲜土货</a></li>
+		                            			<li><a href="#">热卖单鞋</a></li>
+		                            			<li><a href="#">特价旅行</a></li>
+		                            			<li><a href="#">新房装修</a></li>
+		                            			<li><a href="#">全球美食</a></li>
+		                            			<li><a href="#">在线洗衣</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">美丽裙装</a></li>
+		                            			<li><a href="#">智能数码</a></li>
+		                            			<li><a href="#">宝贝最爱</a></li>
+		                            			<li><a href="#">宝贝计划</a></li>
+		                            			<li><a href="#">找工作</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_04">
+		                            		<h4 style="color: #5aaadf;">更多精彩</h4>
+		                            		<ul>
+		                            			<li><a href="#">阿里旺旺</a></li>
+		                            			<li><a href="#">买房租房</a></li>
+		                            			<li><a href="#">限时限量</a></li>
+		                            			<li><a href="#">淘公仔</a></li>
+		                            			<li><a href="#">淘宝全球</a></li>
+		                            			<li><a href="#">淘宝视频</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">支付宝</a></li>
+		                            			<li><a href="#">大众评审</a></li>
+		                            			<li><a href="#">余额宝</a></li>
+		                            			<li><a href="#">司法拍卖</a></li>
+		                            			<li><a href="#">闺蜜淘货</a></li>
+		                            			<li><a href="#">浏览器</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">点点虫</a></li>
+		                            			<li><a href="#">天猫进口</a></li>
+		                            			<li><a href="#">大牌捡宝</a></li>
+		                            			<li><a href="#">淘宝台湾</a></li>
+		                            			<li><a href="#">B格</a></li>
+		                            		</ul>
+		                            	</div>
+		                            </div>
+	                            </div>
+							</li>
+						</ul>
+					</div>
+                </div>
+			</div>
+		</div>
+		
+		<div class="box2">
+			<div class="box2_01">
+				<img src="img/logo2.jpg"/>
+				<span>用户注册</span>
+			</div>
+			<div class="box2_02">
+				<ul>
+					<li><span>1</span>设置用户名</li>
+					<li><span>2</span>填写账号信息</li>
+					<li><span>3</span>设置支付方式</li>
+					<li><span>√</span>注册成功</li>
+				</ul>
+			</div>
+			<div class="box2_03">
+				<span><a href="#">中文</a></span>
+				|
+				<span><a href="#">English</a></span>
+			</div>
+		</div>
+		
+		<div class="box3">
+			<div class="box3_01">
+				手机号
+				<span class="sp_01">中国大陆<span class="sp_02">+86&nbsp;&or;</span></span>
+				<input type="text" placeholder="请输入你的手机号" class="input"/>
+				<div class="dc">
+					<p class="dc_01"><span>×</span>请输入你的手机号码</p>
+					<p class="dc_02">√</p>
+					<p class="dc_03"><span>×</span>输入的手机格式有误</p>
+				</div>
+			</div>
+			<div class="box3_02">
+				验证
+				<div class="yz">
+					<p class="yz_sp">请拖动滑块</p>
+					<div class="yzt_01"></div>
+					<div class="yzt">
+						<p class="yz_p1"><span>></span><span>></span></p>
+						<p class="yz_p2">√</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="box3_03">
+				下一步
+			</div>
+			<div class="box3_04"><a href="#">切换成企业帐户注册</a></div>
+			<div class="box3_05"><img src="img/xinxix.png"/><a href="#">"淘宝注册"改进建议</a></div>
+			<div class="box3_06">
+				<p class="b06_p1">验证手机</p>
+				<p class="b06_p2"><span>!</span>校验码已发送到你的手机，15分钟内输入有效，请勿泄漏。</p>
+				<p class="b06_p2 b06_p3"><span>!</span>如您无法收到短信验证码，请点击‘获取语音验证码’。我们将给您拨打电话</p>
+				<div class="box3_06_01">
+					<p class="b06_p4">手机号<span class="sjh"></span></p>
+					<div class="box3_06_02">
+						<p class="b06_p5">验证码<input type="text"/></p>
+						<p class="b06_p6">免费获取验证码</p>
+						<p class="b06_p7">重发验证码(<span class="b06_p10">60</span>s)</p>
+					</div>
+					<p class="b06_p8"><span>√</span>校验码已发送至你的手机，请查收</p>
+					<p class="b06_p9">确认</p>
+				</div>
+			</div>
+		    <div class="box3_07">
+		    	<p class="dlmi_p1">登录名<span class="dl_span1"></span></p>
+		    	<div class="box3_07_01">
+		    		<p class="dlmi_p2">设置登录密码<span class="dl_span2">登录时验证，保护账户信息</span></p>
+		    		<p class="dlmi_p3">登录密码<input type="password" placeholder="设置你的登录密码" class="szm_01"/><span class="dl_span3 bfh"><span class="xiao_span bfh_d">×</span>密码设置不符合要求</span><span class="bfh_d_01 ner_02">√</span></p>
+		    		<p class="dlmi_p3">密码确认<input type="password" class="szm_02"/><span class="dl_span3 bfh_01"><span class="xiao_span">×</span>两次密码输入不一致</span><span class="bfh_d_01 ner_03">√</span></p>
+		    	</div>
+		    	<div class="box3_07_02">
+		    		<p class="huiy_01">设置会员名</p>
+		    		<p class="huiy_02">登录名<input type="text" placeholder="会员名一但设置成功，无法修改" class="hym"/><span class="dl_span3 neilian"><span class="xiao_span">×</span>5-25个字符，推荐使用中文，请勿包含姓名/银行卡等隐私信息，一但设置成功无法修改</span><span class="bfh_d_01 ner_01">√</span></p>
+		    	</div>
+		    	<div class="box3_07_03">提交</div>
+		    </div>
+		    <div class="box3_08">
+		    	<p><span class="p1_sp1">设置支付方式</span><span class="p1_sp2">即开通快捷支付</span><span class="p1_sp3">?</span></p>
+		    	<div class="zs_01">
+		    		<div class="lie_01">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">真实姓名</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="text" class="xm_ip1"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_01">×</span><span class="xm_02 gs_01">格式不正确</span></p>
+		    			    <p class="zsxm_03">选择</p>
+		    			</div>
+		    		</div>
+		    		<div class="lie_01 sf">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">身份证号</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="text" class="xm_ip2"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_02">×</span><span class="xm_02 gs_02">格式不正确</span></p>
+		    			</div>
+		    		</div>
+		    		<div class="lie_01">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">银行卡卡号</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="text" class="xm_ip3"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_03">×</span><span class="xm_02 gs_03">格式不正确</span></p>
+		    			    <p class="zsxm_03">银行卡要求</p>
+		    			</div>
+		    		</div>
+		    		<div class="lie_01">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">手机号码</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="text" class="xm_ip4"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_04">×</span><span class="xm_02 gs_04">格式不正确</span></p>
+		    			    <p class="zsxm_03" style="color: #999999; font-size: 12px;">请填写您在银行预留的手机号码，以验证银行卡是否属于您本人</p>
+		    			</div>
+		    		</div>
+		    		<div class="lie_01 sf">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">设置支付宝支付密码</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="password" class="xm_ip5"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_05">×</span><span class="xm_02 gs_05">格式不正确</span></p>
+		    			</div>
+		    		</div>
+		    		<div class="lie_01 sf">
+		    			<div class="heng_01">
+		    				<p class="zsxm_01">确认支付密码</p>
+		    			</div>
+		    			<div class="heng_02">
+		    				<input type="password" class="xm_ip6"/>
+		    				<p class="zsxm_02"><span class="xm_01 dui_06">×</span><span class="xm_02 gs_06">密码不一致</span></p>
+		    			</div>
+		    		</div>
+		    	</div>
+		        <div class="lie_02">
+		    			<input type="checkbox" class="che"/>
+		    			<span>我同意</span>
+		    			<a href="#">快捷支付服务协议</a>
+		    	</div>
+		    	<div class="lie_03">
+		    		<span class="tg_01">确定</span>
+		    		<span class="tg_02">直接跳过，完成注册</span>
+		    	</div>
+		    </div>
+		    <div class="box3_09">
+		    	<div class="zhzc_01">
+		    		<img src="img/logo.jpg"/>
+		    		<p>帐户注册</p>
+		    	</div>
+		    	<div class="zhzc_02">
+		    		<div class="gx_01">
+		    			<p class="nide_01">√</p>
+		    			<p class="nide_02">恭喜注册成功！你的账户为：</p>
+		    		</div>
+		    		<div class="gx_02">
+		    			<p><span>登录名：</span><span class="cgdlm_01"></span><span>(可登录和使用以下网站：支付宝、淘宝、天猫...)</span></p>
+		    			<p><span>绑定手机：</span><span class="cgdlm_02"></span><span>(用于接收短信校验码)</span></p>
+		    			<p><span>淘宝会员名：</span><span class="cgdlm_03"></span><span class="lxshb">领新手红包，赚淘金币，尽在新手专区！<a href="#">查看详情</a></span></p>
+		    		</div>
+		    	</div>
+		    	<div class="cgqd">确定</div>
+		    </div>
+		</div>
+		
+		<div class="box4">
+			<div class="box4_01">
+				<a href="#">阿里巴巴集团</a>
+				|
+				<a href="#">阿里巴巴国际站</a>
+				|
+				<a href="#">阿里巴巴中国站</a>
+				|
+				<a href="#">全球速卖通</a>
+				|
+				<a href="#">淘宝网</a>
+				|
+				<a href="#">天猫</a>
+				|
+				<a href="#">聚划算</a>
+				|
+				<a href="#">一淘</a>
+				|
+				<a href="#">阿里妈妈</a>
+				|
+				<a href="#">阿里云计算</a>
+				|
+				<a href="#">云OS</a>
+				|
+				<a href="#">万网</a>
+				|
+				<a href="#">支付宝</a>
+			</div>
+			<div class="box4_02">
+				<a href="#">关于淘宝</a>
+				<a href="#">合作伙伴</a>
+				<a href="#">营销中心</a>
+				<a href="#">联系客服</a>
+				<a href="#">开放平台</a>
+				<a href="#">诚征英才</a>
+				<a href="#">联系我们</a>
+				<a href="#">网站地图</a>
+				<a href="#">法律声明及隐私权政策</a>
+				<span>&copy; 2017 Taobao.com 版权所有</span>
+			</div>
+			<div class="box4_03">
+				<span>网络文化经营许可证：<a href="#">文网文[2010]040号</a></span>
+				|
+				<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+				|
+				<span>信息网络传播视听节目许可证：1109364号</span>
+			</div>
+		</div>
+		
+	</body>
+</html>

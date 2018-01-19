@@ -1,0 +1,4573 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="css/shouye.css"/>
+		<script src="js/move.js"></script>
+		<script src="js/jquery-1.12.0.js"></script>
+		<script src="js/cookie.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box2_04 = document.getElementById("box2_04");
+				var xcen = document.getElementById("xcen");
+				xcen.onmousedown = function(){
+					box2_04.style.display = "none";
+				}
+				var a3 = document.getElementById("a3");
+				var ai = a3.getElementsByTagName("a");
+				var last = ai[0];
+				ai[0].style.backgroundColor = "#ff6800";
+				ai[0].style.color = "white";
+				ai[0].style.borderTopLeftRadius = "5px";
+				ai[0].style.borderTopRightRadius = "5px";
+				for(var i=0;i<ai.length;i++){
+					ai[i].index = i;
+					ai[i].onmousedown = function(){
+						last.style.backgroundColor = "white";
+						last.style.borderTopLeftRadius = "0px";
+						last.style.borderTopRightRadius = "0px";
+						last.style.color = "#ff6800";
+						this.style.backgroundColor = "#ff6800";
+						this.style.borderTopLeftRadius = "5px";
+						this.style.borderTopRightRadius = "5px";
+						this.style.color = "white";
+						last = this;
+					}
+				}
+//				第一个轮播图
+				var lunbo_01 = document.getElementById("lunbo_01");
+				var imgtu = document.getElementById("imgtu");
+				var igl_01 = imgtu.getElementsByTagName("img");
+				var xquan = document.getElementById("xquan");
+				var sp = xquan.getElementsByTagName("span");
+				var but1 = document.getElementById("but1");
+				var but2 = document.getElementById("but2");
+				sp[0].style.backgroundColor = "#F7931E";
+				var width = igl_01[0].offsetWidth;
+				var j = 0;
+				var time = setInterval(fn,5000);
+				function fn(){
+					j++;
+					spys();
+					move(imgtu,"left",-width*j,30,function(){
+						if(j==igl_01.length-1){
+							imgtu.style.left = 0+"px";
+							j=0;
+						}
+					});
+				}
+				lunbo_01.onmouseover = function(){
+					clearInterval(time);
+					but1.style.display = "block";
+					but2.style.display = "block";
+				}
+				lunbo_01.onmouseout = function(){
+					time = setInterval(fn,5000);
+					but1.style.display = "none";
+					but2.style.display = "none";
+				}
+				function spys(){
+					for(var a=0;a<sp.length;a++){
+						if(a==j){
+							sp[a].style.backgroundColor = "#F7931E";
+						}else{
+							sp[a].style.backgroundColor = "white";
+						}
+					}
+					if(j==sp.length){
+							sp[0].style.backgroundColor = "#F7931E";
+						}
+				}
+				for(var b=0;b<sp.length;b++){
+					sp[b].index=b;
+					sp[b].onmousedown = function(){
+						j = this.index;
+						spys();
+						move(imgtu,"left",-width*this.index,20);
+					}
+				}
+				but1.onmousedown = function(){
+					j--;
+					if(j==-1){
+						imgtu.style.left = -width*sp.length+"px";
+						j = sp.length-1;
+					}
+					spys();
+					move(imgtu,"left",-width*j,30,function(){
+						if(j==igl_01.length-1){
+							imgtu.style.left = 0+"px";
+							j = 0;
+						}
+					});
+				}
+				but2.onmousedown = function(){
+					j++;
+					if(j==sp.length+1){
+						j = 1;
+						imgtu.style.left = 0+"px";
+					}
+					spys();
+					move(imgtu,"left",-width*j,30,function(){
+						if(j==igl_01.length-1){
+							imgtu.style.left = 0+"px";
+							j = 0;
+						}
+					});
+				}
+//				第二个轮播图
+                var liu = document.getElementById("liu");
+                var hengtiao = document.getElementById("hengtiao");
+                var elsp = hengtiao.getElementsByTagName("span");
+                var dongtu = document.getElementById("dongtu");
+                var ztp = document.getElementById("ztp");
+                var erimg = ztp.getElementsByTagName("img");
+                var but3 = document.getElementById("but3");
+                var but4 = document.getElementById("but4");
+                var width2 = erimg[0].offsetWidth;
+                var time2 = setInterval(fn1,4800);
+                var c = 0;
+                var f = 0;
+                elsp[0].style.backgroundColor = "black";
+                function fn1(){
+                	c++;
+                	if(c==erimg.length-1){
+                		liu.innerHTML = 1;
+                	}else{
+                		liu.innerHTML = c+1;
+                	}
+                	span2();
+                	move(ztp,"left",-width2*c,30,function(){
+                		if(c==erimg.length-1){
+                			ztp.style.left = 0+"px";
+                			c = 0;
+                		}
+                	});
+                }
+                for(var d=0;d<elsp.length;d++){
+                	elsp[d].index=d;
+                	elsp[d].onmousedown = function(){
+                		c = this.index;
+                		liu.innerHTML = this.index+1;
+                		span2();
+                		move(ztp,"left",-width2*this.index,30);
+                	}
+                	
+                }
+                function span2(){
+                	for(var e=0;e<elsp.length;e++){
+                		if(e==c){
+                			elsp[e].style.backgroundColor = "black";
+                		}else{
+                			elsp[e].style.backgroundColor = "#ff184a";
+                		}
+                	}
+                	if(c==elsp.length){
+                		elsp[0].style.backgroundColor = "black";
+                	}
+                }
+                but3.onmousedown = function(){
+                	c--;
+                	if(c==-1){
+                		ztp.style.left = -width2*elsp.length+"px";
+                		c = elsp.length-1;
+                		liu.innerHTML = 6;
+                	}else{
+                		liu.innerHTML = c+1;
+                	}
+                	span2();
+                	move(ztp,"left",-width2*c,30,function(){
+                		if(c==erimg.length-1){
+                			ztp.style.left = 0+"px";
+                			c = 0;
+                		}
+                	});
+                }
+                but4.onmousedown = function(){
+                	c++;
+                	if(c==elsp.length+1){
+                		c=1;
+                		ztp.style.left = 0+"px";
+                	}
+                	if(c==erimg.length-1){
+                		liu.innerHTML = 1;
+                	}else{
+                		liu.innerHTML = c+1;
+                	}
+                	span2();move(ztp,"left",-width2*c,30,function(){
+                		if(c==erimg.length-1){
+                			ztp.style.left = 0+"px";
+                			c = 0;
+                		}
+                	});
+                }
+                dongtu.onmouseover = function(){
+                	clearInterval(time2);
+                	but3.style.display = "block";
+                	but4.style.display = "block";
+                }
+                dongtu.onmouseout = function(){
+                	time2 = setInterval(fn1,4800);
+                	but3.style.display = "none";
+                	but4.style.display = "none";
+                }
+                
+//              轮播图3
+                var lunbo3 = document.getElementById("lunbo3");
+                var lunbo3_01 = document.getElementById("lunbo3_01");
+                var lbdiv = lunbo3_01.getElementsByTagName("div");
+                var g = 0;
+                var height = lbdiv[0].offsetHeight;
+                var time3 = setInterval(lb3,4000);
+                function lb3(){
+                	g++;
+                	move(lunbo3_01,"top",-height*g,30,function(){
+                		if(g==lbdiv.length-1){
+                            lunbo3_01.style.top = 0+"px";
+                		    g=0;
+            		    }
+                	});
+                }
+                lunbo3.onmouseover =function(){
+                	clearInterval(time3);
+                }
+                lunbo3.onmouseout = function(){
+                	time3 = setInterval(lb3,4800);
+                }
+                window.onblur = function(){
+                	clearInterval(time);
+                	clearInterval(time2);
+                	clearInterval(time3);
+                }
+                
+                window.onfocus = function(){
+                	clearInterval(time);
+					time = setInterval(fn,5000);
+					clearInterval(time2);
+                	time2 = setInterval(fn1,4800);
+                	clearInterval(time3);
+                	time3 = setInterval(lb3,4800);
+                }
+//              充话费
+                var rierji1 = document.getElementById("rierji1");
+                var rierji2 = document.getElementById("rierji2");
+                var rierji3 = document.getElementById("rierji3");
+                var li_01 = document.getElementById("li_01");
+                var li_02 = document.getElementById("li_02");
+                var li_03 = document.getElementById("li_03");
+                var li_04 = document.getElementById("li_04");
+                var cuo1 = document.getElementById("cuo1");
+                var cuo2 = document.getElementById("cuo2");
+                var cuo3 = document.getElementById("cuo3");
+                li_01.onmouseover = function(){
+                	rierji1.style.display = "block";
+                	rierji2.style.display = "none";
+                	rierji3.style.display = "none";
+                	li_02.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "#f4f4f4";
+                	li_01.style.borderColor = "red";
+                	li_01.style.borderBottomColor = "#ffffff";
+                	li_02.style.borderBottomColor = "red";
+                	li_03.style.borderBottomColor = "red";
+                	li_04.style.borderBottomColor = "red";
+                }
+                li_02.onmouseover = function(){
+                	rierji2.style.display = "block";
+                	rierji1.style.display = "none";
+                	rierji3.style.display = "none";
+                	li_01.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "#f4f4f4";
+                	li_02.style.borderColor = "red";
+                	li_02.style.borderBottomColor = "#ffffff";
+                	li_01.style.borderBottomColor = "red";
+                	li_03.style.borderBottomColor = "red";
+                	li_04.style.borderBottomColor = "red";
+                	li_01.style.borderRightColor = "red";
+                }
+                li_03.onmouseover = function(){
+                	rierji3.style.display = "block";
+                	rierji1.style.display = "none";
+                	rierji2.style.display = "none";
+                	li_01.style.borderColor = "#f4f4f4";
+                	li_02.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "red";
+                	li_03.style.borderBottomColor = "#ffffff";
+                	li_01.style.borderBottomColor = "red";
+                	li_02.style.borderBottomColor = "red";
+                	li_04.style.borderBottomColor = "red";
+                	li_02.style.borderRightColor = "red";
+                }
+                cuo1.onmousedown = function(){
+                	rierji1.style.display = "none";
+                	li_01.style.borderColor = "#f4f4f4";
+                	li_02.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "#f4f4f4";
+                	li_04.style.borderColor = "#f4f4f4";
+                }
+                cuo1.onmouseover = function(){
+                	cuo1.style.backgroundColor = "#999999";
+                }
+                cuo1.onmouseout = function(){
+                	cuo1.style.backgroundColor = "#ffffff";
+                }
+                cuo2.onmousedown = function(){
+                	rierji2.style.display = "none";
+                	li_01.style.borderColor = "#f4f4f4";
+                	li_02.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "#f4f4f4";
+                	li_04.style.borderColor = "#f4f4f4";
+                }
+                cuo2.onmouseover = function(){
+                	cuo2.style.backgroundColor = "#999999";
+                }
+                cuo2.onmouseout = function(){
+                	cuo2.style.backgroundColor = "#ffffff";
+                }
+                cuo3.onmousedown = function(){
+                	rierji3.style.display = "none";
+                	li_01.style.borderColor = "#f4f4f4";
+                	li_02.style.borderColor = "#f4f4f4";
+                	li_03.style.borderColor = "#f4f4f4";
+                	li_04.style.borderColor = "#f4f4f4";
+                }
+                cuo3.onmouseover = function(){
+                	cuo3.style.backgroundColor = "#999999";
+                }
+                cuo3.onmouseout = function(){
+                	cuo3.style.backgroundColor = "#ffffff";
+                }
+//              距结束
+                var dspan_01 = document.getElementById("dspan_01");
+                var dspan_02 = document.getElementById("dspan_02");
+                var dspan_03 = document.getElementById("dspan_03");
+                var shi = 1;
+                var fen = 59;
+                var miao = 60;
+                var ling = 0;
+                var time4 = setInterval(djs,1000);
+                function djs(){
+                	miao--;
+                	if(shi<10){
+                		dspan_01.innerHTML = "0"+shi;
+                	}else{
+                		dspan_01.innerHTML = shi;
+                	}
+                	if(fen<10){
+                		dspan_02.innerHTML = "0"+fen;
+                	}else{
+                		dspan_02.innerHTML = fen;
+                	}
+                	if(miao<10){
+                		dspan_03.innerHTML = "0"+miao;
+                	}else{
+                		dspan_03.innerHTML = miao;
+                	}
+                	if(miao<=0){
+                		fen = fen-1;
+                		miao = 60;
+                	}
+                	if(fen<=0){
+                		shi = shi-1;
+                		fen = 59;
+                	}
+                	if(shi<0){
+                		dspan_01.innerHTML = "00";
+                		dspan_02.innerHTML = "00";
+                		dspan_03.innerHTML = "00";
+                		clearInterval(time4);
+                	}
+                } 
+//              猜你喜欢
+                var box14_02 = document.getElementById("box14_02");
+                var xhr = createxhr();
+                xhr.open("GET","js/shouye.json",true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var res = JSON.parse(xhr.responseText);
+						for(var i=0;i<res.length;i++){
+							var div1 = document.createElement("div");
+							box14_02.appendChild(div1);
+							if(i>5){
+								div1.className = "xiazhuang xztop";
+							}else{
+								div1.className = "xiazhuang";
+							}
+							var img1 = document.createElement("img");
+							div1.appendChild(img1);
+							img1.src = res[i].src1;
+							var p1 = document.createElement("p");
+							div1.appendChild(p1);
+							p1.className = "xz_01";
+							p1.innerHTML = res[i].xz_01;
+							var p2 = document.createElement("p");
+							div1.appendChild(p2);
+							p2.className = "xz_02";
+							var span1 = document.createElement("span");
+							p2.appendChild(span1);
+							if(res[i].xz_03==""){
+								
+							}else{
+								span1.className = "xz_03";
+								span1.innerHTML = res[i].xz_03;
+							}
+							var span2 = document.createElement("span");
+							p2.appendChild(span2);
+							span2.className = "xz_04";
+							span2.innerHTML = res[i].xz_04;
+							var span3 = document.createElement("span");
+							p2.appendChild(span3);
+							span3.className = "xz_05";
+							span3.innerHTML = res[i].xz_05;
+							var span4 = document.createElement("span");
+							p2.appendChild(span4);
+							span4.className = "xz_06";
+							if(res[i].xz_06==""){
+								
+							}else{
+								span4.innerHTML = res[i].xz_06;
+							}
+							var div2 = document.createElement("div");
+							div1.appendChild(div2);
+							div2.className = "xz_07";
+							var div3 = document.createElement("div");
+							div2.appendChild(div3);
+							div3.className = "xz_07_01";
+							var p3 = document.createElement("p");
+							div3.appendChild(p3);
+							p3.className = "zxs_01";
+							var img2 = document.createElement("img");
+							p3.appendChild(img2);
+							img2.src = res[i].src2;
+							var span5 = document.createElement("span");
+							p3.appendChild(span5);
+							span5.innerHTML = res[i].sp1;
+							var p4 = document.createElement("p");
+							div3.appendChild(p4);
+							p4.className = "zxs_02";
+							p4.innerHTML = res[i].zxs_02;
+						}
+					}
+				}
+//				隐藏搜索框
+                window.onscroll = function(){
+	                var scrollTop = document.body.scrollTop||document.documentElement.scrollTop;
+	                var tbsosu = document.getElementById("tbsosu");
+//	                console.log(scrollTop);
+	                if(scrollTop>=168){
+	                	tbsosu.style.display = "block";
+	                }else{
+	                	tbsosu.style.display = "none";
+	                }
+                }
+
+			}
+//			弹框
+			$(function(){
+				var $li = $(".tk li:lt(5)");
+				$li.eq(0).css("background-color","#FF780F");
+				$(this).find("a").eq(0).css("color","white");
+				$li.on("click",function(){
+					$(this).css("background-color","#FF780F");
+					$(this).siblings().css("background-color","");
+					$(this).find("a").css("color","white");
+					$(this).siblings().find("a").css("color","");
+				});
+//				公告、规则
+                $gli = $(".right_03 li");
+                $gli.eq(0).find(".a1").css({"border-bottom":"2px solid red","font-weight":"700"});
+            	$gli.eq(0).siblings().find(".a1").css({"border-bottom":"","font-weight":""});
+            	$gli.eq(0).find("div").css("display","block");
+            	$gli.eq(0).siblings().find("div").css("display","none");
+                $gli.on("mouseover",function(){
+                	$(this).find(".a1").css({"border-bottom":"2px solid red","font-weight":"700"});
+                	$(this).siblings().find(".a1").css({"border-bottom":"","font-weight":""});
+                	$(this).find("div").css("display","block");
+                	$(this).siblings().find("div").css("display","none");
+                });
+//				亲，请登录
+                $(".qdl").on("click",function(){
+                	open("denglu.html");
+                });
+                if(getCookie("chuan")){
+                	$(".qdl").html(getCookie("chuan"));
+                }
+			})
+			$(window).scroll(function(){
+				if($(document).scrollTop()>=285){
+					$(".tkli_06").css("display","block");
+				}else{
+					$(".tkli_06").css("display","none");
+				}
+				if($(document).scrollTop()<=440){
+					$(".tk").css("position","absolute");
+					$(".tk").css("top","500px");
+				}else{
+					$(".tk").css("position","fixed");
+					$(".tk").css("top","55px");
+				}
+				var $li = $(".tk li:lt(5)");
+				if($(document).scrollTop()>=955){
+					$li.eq(0).css("background-color","#FF780F");
+					$li.eq(0).find("a").css("color","white");
+					$li.eq(0).siblings().css("background-color","");
+					$li.eq(0).siblings().find("a").css("color","");
+				}
+				if($(document).scrollTop()>=1970){
+					$li.eq(1).css("background-color","#FF780F");
+					$li.eq(1).find("a").css("color","white");
+					$li.eq(1).siblings().css("background-color","");
+					$li.eq(1).siblings().find("a").css("color","");
+				}
+				if($(document).scrollTop()>=2800){
+					$li.eq(2).css("background-color","#FF780F");
+					$li.eq(2).find("a").css("color","white");
+					$li.eq(2).siblings().css("background-color","");
+					$li.eq(2).siblings().find("a").css("color","");
+				}
+				if($(document).scrollTop()>=3600){
+					$li.eq(3).css("background-color","#FF780F");
+					$li.eq(3).find("a").css("color","white");
+					$li.eq(3).siblings().css("background-color","");
+					$li.eq(3).siblings().find("a").css("color","");
+				}
+				if($(document).scrollTop()>=4830){
+					$li.eq(4).css("background-color","#FF780F");
+					$li.eq(4).find("a").css("color","white");
+					$li.eq(4).siblings().css("background-color","");
+					$li.eq(4).siblings().find("a").css("color","");
+				}
+				var $list = $(".tk li");
+				var $scrollTop = $(document).scrollTop();
+				$list.eq(5).on("click",function(){
+					$(document).scrollTop(0);
+					$li.eq(0).css("background-color","#FF780F");
+					$li.eq(0).find("a").css("color","white");
+					$li.eq(0).siblings().css("background-color","");
+					$li.eq(0).siblings().find("a").css("color","");
+				});
+				$list.eq(0).on("click",function(){
+					$(document).scrollTop(955);
+				});
+				$list.eq(1).on("click",function(){
+					$(document).scrollTop(1970);
+				});
+				$list.eq(2).on("click",function(){
+					$(document).scrollTop(2800);
+				});
+				$list.eq(3).on("click",function(){
+					$(document).scrollTop(3600);
+				});
+				$list.eq(4).on("click",function(){
+					$(document).scrollTop(4830);
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<!--隐藏搜索框-->
+		<div class="tbsosu" id="tbsosu">
+			<div class="tbsosu_01">
+				<img src="img/tb_logo.jpg"/>
+				<div class="tbsosu_02">
+					<div class="sou_01">搜索</div>
+					<input type="text" placeholder="请输入..."/>
+				</div>
+			</div>
+		</div>
+		<!--弹框-->	
+		<div class="tk" id="tk">
+			<img src="img/bxlian.jpg"/>
+			<div class="tk_01">
+				<ul>
+					<li style="border-top-left-radius: 8px; border-top-right-radius: 8px;" class="tkli_01"><a class="ta_a5">爱逛好货</a></li>
+					<li class="tkli_02"><a class="ta_a1">好店直播</a></li>
+					<li class="tkli_03"><a class="ta_a2">品质特色</a></li>
+					<li class="tkli_04"><a class="ta_a3">实惠热卖</a></li>
+					<li class="tkli_05"><a class="ta_a4">猜你喜欢</a></li>
+					<li class="tkli_06"><a class="ta_a5"><span class="ta_sp">^</span>顶部</a></li>
+					<li><a class="ta_a5" style="padding-top: 15px; padding-bottom: 15px;">反馈</a></li>
+					<li style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;"><a class="ta_a5">暴恐举报</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--开头-->
+		<div class="box1">
+			<div class="box1_01">
+				<div class="chengshi">
+					<ul>
+						<li>中国大陆<img src="img/xiekuo.jpg"/>
+							<ul class="ejcd">
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+								<li>全球</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="qin"><a href="#" class="qdl">亲，请登录</a></div>
+				<div class="qin_01">
+					<a href="zhuce.html">免费注册</a>
+					<a href="#">手机逛淘宝</a>
+				</div>
+				<div class="ring">
+					<div class="erji">
+						<ul>
+							<li>
+								<a href="denglu.html" class="abiao">我的淘宝</a><img src="img/xiekuo.jpg"/>
+								<ul>
+									<li>已买到的宝贝</li>
+									<li>我的足迹</li>
+									<li>爱逛街</li>
+									<li>淘宝达人</li>
+									<li>新欢</li>
+								</ul>
+							</li>
+							<li style="background-color: #f5f5f5;"><img src="img/gwc.jpg"/><a href="#" class="abiao">购物车</a><img src="img/xiekou_01.jpg"/></li>
+							<li>
+								<img src="img/xing.jpg"/><a href="#" class="abiao">收藏夹</a>
+								<img src="img/xiekuo.jpg"/>
+								<ul class="list" style="height: 68px;">
+									<li>收藏的宝贝</li>
+									<li>收藏的店铺</li>
+								</ul>
+							</li>
+							<li style="background-color: #f5f5f5;">
+								<a href="#" class="list_02 abiao">商品分类</a>
+							</li>
+							<li>
+								<a href="#" class="abiao">卖家中心</a><img src="img/xiekuo.jpg"/>
+								<ul class="list">
+									<li>免费开店</li>
+									<li>已卖出的宝贝</li>
+									<li>出售中的宝贝</li>
+									<li>卖家服务市场</li>
+									<li>卖家服务中心</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" class="abiao">联系客服</a><img src="img/xiekuo.jpg"/>
+								<ul class="list" style="height: 68px;">
+									<li>消费者客服</li>
+									<li>卖家客服</li>
+								</ul>
+							</li>
+							<li>
+								<img src="img/hang.jpg"/><a href="#" class="abiao">网站导航</a><img src="img/xiekou_01.jpg"/>
+	                            <div class="list_01">
+		                            	<div class="daohang_01">
+		                            		<h4>主题市场</h4>
+		                            		<ul>
+		                            			<li><a href="#">女装</a></li>
+		                            			<li><a href="#">箱包</a></li>
+		                            			<li><a href="#">手机</a></li>
+		                            			<li><a href="#">手表</a></li>
+		                            			<li><a href="#">游戏</a></li>
+		                            			<li><a href="#">鲜花</a></li>
+		                            			<li><a href="#">装修</a></li>
+		                            			<li><a href="#">汽车</a></li>
+		                            			<li><a href="#">定制</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">男装</a></li>
+		                            			<li><a href="#">婴童</a></li>
+		                            			<li><a href="#">美妆</a></li>
+		                            			<li><a href="#">运动</a></li>
+		                            			<li><a href="#">动漫</a></li>
+		                            			<li><a href="#">宠物</a></li>
+		                            			<li><a href="#">建材</a></li>
+		                            			<li><a href="#">二手车</a></li>
+		                            			<li><a href="#">教育</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">内衣</a></li>
+		                            			<li><a href="#">家电</a></li>
+		                            			<li><a href="#">珠宝</a></li>
+		                            			<li><a href="#">户外</a></li>
+		                            			<li><a href="#">影视</a></li>
+		                            			<li><a href="#">农资</a></li>
+		                            			<li><a href="#">家居</a></li>
+		                            			<li><a href="#">办公</a></li>
+		                            			<li><a href="#">卡劵</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">鞋靴</a></li>
+		                            			<li><a href="#">数码</a></li>
+		                            			<li><a href="#">眼镜</a></li>
+		                            			<li><a href="#">乐器</a></li>
+		                            			<li><a href="#">美食</a></li>
+		                            			<li><a href="#">房产</a></li>
+		                            			<li><a href="#">百货</a></li>
+		                            			<li><a href="#">企业购</a></li>
+		                            			<li><a href="#">本地</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_02">
+		                            		<h4 style="color: #a9c161;">特色市场</h4>
+		                            		<ul>
+		                            			<li><a href="#">iFashion</a></li>
+		                            			<li><a href="#">全球购</a></li>
+		                            			<li><a href="#">星店</a></li>
+		                            			<li><a href="#">拍卖会</a></li>
+		                            			<li><a href="#">飞猪</a></li>
+		                            			<li><a href="#">农资</a></li>
+		                            			<li><a href="#">俪人购</a></li>
+		                            			<li><a href="#">全球精选</a></li>
+		                            			<li><a href="#">量贩团</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">爱逛街</a></li>
+		                            			<li><a href="#">腔调</a></li>
+		                            			<li><a href="#">极有家</a></li>
+		                            			<li><a href="#">淘宝众筹</a></li>
+		                            			<li><a href="#">亲宝贝</a></li>
+		                            			<li><a href="#">天天特价</a></li>
+		                            			<li><a href="#">聚名品</a></li>
+		                            			<li><a href="#">非常大牌</a></li>
+		                            			<li><a href="#">阿里翻译</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">美妆秀</a></li>
+		                            			<li><a href="#">淘女郎</a></li>
+		                            			<li><a href="#">特色中国</a></li>
+		                            			<li><a href="#">中国质造</a></li>
+		                            			<li><a href="#">闲鱼</a></li>
+		                            			<li><a href="#">Outlets</a></li>
+		                            			<li><a href="#">淘抢购</a></li>
+		                            			<li><a href="#">试用</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_03 daohang_06">
+		                            		<h4 style="color: #e066b1;">阿里APP</h4>
+		                            		<ul>
+		                            			<li><a href="#">淘宝</a></li>
+		                            			<li><a href="#">聚划算</a></li>
+		                            			<li><a href="#">旺信</a></li>
+		                            			<li><a href="#">钉钉</a></li>
+		                            			<li><a href="#">虾米音乐</a></li>
+		                            			<li><a href="#">爱逛街</a></li>
+		                            			<li><a href="#">网商银行</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">天猫</a></li>
+		                            			<li><a href="#">飞猪</a></li>
+		                            			<li><a href="#">闲鱼</a></li>
+		                            			<li><a href="#">高德地图</a></li>
+		                            			<li><a href="#">淘票票</a></li>
+		                            			<li><a href="#">拍卖会</a></li>
+		                            			<li><a href="#">阿里邮箱</a></li>
+		                            		</ul>
+		                            		<ul>
+		                            			<li><a href="#">支付宝</a></li>
+		                            			<li><a href="#">蚂蚁聚宝</a></li>
+		                            			<li><a href="#">阿里钱盾</a></li>
+		                            			<li><a href="#">点点虫</a></li>
+		                            			<li><a href="#">菜鸟裹裹</a></li>
+		                            			<li><a href="#">阿里云</a></li>
+		                            			<li><a href="#">阿里众宝</a></li>
+		                            		</ul>
+		                            	</div>
+		                            	<div class="daohang_01 daohang_04">
+		                            		<h4 style="color: #5aaadf;">精彩推荐集</h4>
+		                            		<ul>
+		                            			<li><a href="#">余额宝</a></li>
+		                            			<li><a href="#">淘公仔</a></li>
+		                            			<li><a href="#">淘宝香港</a></li>
+		                            			<li><a href="#">淘宝全球</a></li>
+		                            			<li><a href="#">闺蜜淘货</a></li>
+		                            			<li><a href="#">淘工作</a></li>
+		                            		</ul>
+		                            		<ul class="daohang_05">
+		                            			<li><a href="#">大牌捡宝</a></li>
+		                            			<li><a href="#">浏览器</a></li>
+		                            			<li><a href="#">淘宝台湾</a></li>
+		                            			<li><a href="#">淘宝东南亚</a></li>
+		                            			<li><a href="#">大众评审</a></li>
+		                            		</ul>
+		                            	</div>
+	                            </div>
+							</li>
+						</ul>
+					</div>
+                </div>
+			</div>
+		</div>
+	    <!--搜索-->
+	    <div class="quan">
+		    <div class="box2">
+		    	<div class="img1"><img src="img/logo3.jpg"/></div>
+		    	<div class="box2_01" id="a3">
+		    		<a href="#">宝贝</a>
+		    		<a href="#">天猫</a>
+		    		<a href="#">店铺</a>
+		    	</div>
+		    	<div class="box2_02">
+		    		<input type="text" placeholder="小水滴 360智能摄像头"/>
+		    		<img src="img/zhaoxiangji.jpg" class="ssimg"/>
+		    		<div class="sousuo">搜索</div>
+		    	</div>
+		    	<div class="box2_03">
+		    			<a href="#">新款连衣裙</a>
+		    			<a href="#">四件套</a>
+		    			<a href="#">潮流T恤</a>
+		    			<a href="#">时尚女鞋</a>
+		    			<a href="#">短裤</a>
+		    			<a href="#">半身裙</a>
+		    			<a href="#">男士外套</a>
+		    			<a href="#">墙纸</a>
+		    			<a href="#">行车记录仪</a>
+		    			<a href="#">新款男鞋</a>
+		    			<a href="#">耳机</a>
+		    			<a href="#" style="margin-left: 58px;">更多&gt;</a>
+		    	</div>
+		    	<div class="box2_04" id="box2_04">
+		    		<div class="xcen" id="xcen">x</div>
+		    		<div class="sjsm">
+		    			<span>手机淘宝</span>
+		    			<img src="img/ewm.jpg"/>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>	
+	    <!--主题市场-->
+	    <div class="box3">
+	    	<div class="box3_01">
+	    		<span>主题市场</span>
+	    		<div class="ul_01">
+		    		<ul>
+		    			<li><a href="#">天猫</a><img src="img/mao.jpg" class="img2"/></li>
+		    			<li><a href="#">聚划算</a><img src="img/mao.jpg" class="img3"/></li>
+		    			<li><a href="#">天猫超市</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><span class="li_xie">|</span></li>
+		    		</ul>
+		    		<ul>
+		    			<li><a href="#">淘抢购</a><img src="img/mao.jpg" class="img3"/></li>
+		    			<li><a href="#">电器城</a><img src="img/mao.jpg" class="img3"/></li>
+		    			<li><a href="#">司法拍卖</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><a href="#">中国质造</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><a href="#">兴农扶贫</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><span class="li_xie">|</span></li>
+		    		</ul>
+		    		<ul>
+		    			<li><a href="#">飞猪旅行</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><a href="#">智能生活</a><img src="img/mao.jpg" class="img4"/></li>
+		    			<li><a href="#">苏宁易购</a><img src="img/mao.jpg" class="img4"/></li>
+		    		</ul>
+	    		</div>
+	    	</div>
+	    </div>
+	    <!--主题列表-->
+	    <div class="box4">
+	    	<div class="box4_01">
+	    		<ul id="ul_01">
+	    			<!--女装-->
+	    			<li>
+	    				<span class="splb"><a href="#">女装</a>/<a href="#">男装</a>/<a href="#">内衣</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01">
+	    					<div class="lb2">
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--鞋靴-->
+	    			<li>
+	    				<span class="splb"><a href="#">鞋靴</a>/<a href="#">箱包</a>/<a href="#">配件</a><span class="splb_01">&gt;</span></span>
+	    			    <div class="lb_01 lb_02">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--童装玩具-->
+	    			<li>
+	    				<span class="splb"><a href="#">童装玩具</a>/<a href="#">孕产</a>/<a href="#">用品</a><span class="splb_01">&gt;</span></span>
+	    					<div class="lb_01 lb_03">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--家电-->
+	    			<li>
+	    				<span class="splb"><a href="#">家电</a>/<a href="#">数码</a>/<a href="#">手机</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_04">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--美妆-->
+	    			<li>
+	    				<span class="splb"><a href="#">美妆</a>/<a href="#">洗护</a>/<a href="#">保健品</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_05">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--珠宝-->
+	    			<li>
+	    				<span class="splb"><a href="#">珠宝</a>/<a href="#">眼镜</a>/<a href="#">手表</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_06">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--运动-->
+	    			<li>
+	    				<span class="splb"><a href="#">运动</a>/<a href="#">户外</a>/<a href="#">乐器</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_07">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--游戏-->
+	    			<li>
+	    				<span class="splb"><a href="#">游戏</a>/<a href="#">动漫</a>/<a href="#">影视</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_08">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--美食-->
+	    			<li>
+	    				<span class="splb"><a href="#">美食</a>/<a href="#">生鲜</a>/<a href="#">零食</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_09">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3"></div>
+	    				</div>
+	    			</li>
+	    			<!--鲜花-->
+	    			<li>
+	    				<span class="splb"><a href="#">鲜花</a>/<a href="#">宠物</a>/<a href="#">农资</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_10">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--房产-->
+	    			<li>
+	    				<span class="splb"><a href="#">房产</a>/<a href="#">装修</a>/<a href="#">建材</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_11">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--家具-->
+	    			<li>
+	    				<span class="splb"><a href="#">家具</a>/<a href="#">家饰</a>/<a href="#">家纺</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_12">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--汽车-->
+	    			<li>
+	    				<span class="splb"><a href="#">汽车</a>/<a href="#">二手车</a>/<a href="#">用品</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_13">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--办公-->
+	    			<li>
+	    				<span class="splb"><a href="#">办公</a>/<a href="#">DIY</a>/<a href="#">五金电子</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_14">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--百货-->
+	    			<li>
+	    				<span class="splb"><a href="#">百货</a>/<a href="#">餐厨</a>/<a href="#">家庭保健</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_15">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<!--学习-->
+	    			<li>
+	    				<span class="splb"><a href="#">学习</a>/<a href="#">卡劵</a>/<a href="#">本地服务</a><span class="splb_01">&gt;</span></span>
+	    				<div class="lb_01 lb_16">
+	    					<div class="lb2">
+	    						<!--女装-->
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    						<div class="lb2_01">
+	    							<div class="nvzhuang">
+	    								<a href="#" class="nvzhuang_01">女装</a>
+	    								<a href="#" class="nvzhuang_02">更多&gt;</a>
+	    							</div>
+	    							<div class="nzwb">
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒</a>
+	    								<a href="#">羽绒服羽绒</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    								<a href="#">羽绒服</a>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="lb3">
+	    						<p>猜你喜欢</p>
+	    						<div class="tuwm">
+	    							<ul>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li>
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    								<li class="magtop">
+	    									<img src="img/nv_04.jpg"/>
+	    									<br/>
+	    									<a href="#">九月陌默 2017秋</a>
+	    								</li>
+	    							</ul>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			
+	    		</ul>
+	    	</div>
+	        <div class="box4_02">
+	        	<div id="lunbo_01">
+	        		<div id="imgtu">
+	        			<img src="img/lubo_01.jpg"/>
+	        			<img src="img/lubo_02.jpg"/>
+	        			<img src="img/lubo_03.jpg"/>
+	        			<img src="img/lubo_04.jpg"/>
+	        			<img src="img/lubo_05.jpg"/>
+	        			<img src="img/lubo_01.jpg"/>
+	        		</div>
+	        		<div class="xquan" id="xquan">
+	        			<span></span>
+	        			<span></span>
+	        			<span></span>
+	        			<span></span>
+	        			<span></span>
+	        		</div>
+	        		<div id="but1"><</div>
+	        		<div id="but2">></div>
+	        	</div>
+	            <div id="lunbo_02">
+	            	<div class="tmlg">
+	            		<img src="img/tmlogo.jpg"/>
+	            		<span class="lxsh">理想生活上天猫</span>
+	            		<span class="bzi"><span id="liu">1</span>/6</span>
+	            	</div>
+	            	<div class="hengtiao" id="hengtiao">
+	            		<span></span>
+	            		<span></span>
+	            		<span></span>
+	            		<span></span>
+	            		<span></span>
+	            		<span style="width: 90px;"></span>
+	            	</div>
+	            	<div class="dongtu" id="dongtu">
+	            		<div class="ztp" id="ztp">
+	            			<img src="img/lubo_01.jpg"/>
+		        			<img src="img/lubo_02.jpg"/>
+		        			<img src="img/lubo_03.jpg"/>
+		        			<img src="img/lubo_04.jpg"/>
+		        			<img src="img/lubo_05.jpg"/>
+		        			<img src="img/dt_01.png"/>
+		        			<img src="img/lubo_01.jpg"/>
+	            		</div>
+	            		<div id="but3"><</div>
+	            		<div id="but4">></div>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="box4_03">
+	        	<div><img src="img/sd_01.jpg"/></div>
+	        	<div>
+	        		<p>今日热卖</p>
+	        		<img src="img/sd_02.jpg"/>
+	        	</div>
+	        </div>
+	        <div class="box4_04">
+	        	<div class="totian">
+	        		<img src="img/tbtot.jpg"/>
+	        		<p>让你的生活更有趣</p>
+	        	</div>
+	        	<div class="lunbo3" id="lunbo3">
+	        		<div class="lunbo3_01" id="lunbo3_01">
+	        			<div class="lb3k">
+	        			     <img src="img/lunbo3_01.jpg"/>
+	        			     <span>
+	        			        <a href="#">1配置确认，华为Mate10国行开启预定</a>
+	        			        <br/>
+	        			     	离华为在德国慕尼黑的发布会越来越近了，关于Mate10系列新机的消息也越来越多了。
+	        			     	近日又有网友在微博上曝光了华为Mate10的线下广告宣传板，其中包含了Mate10部分的配置信息清晰可见。
+	        			     	根据此前曝光的宣传视频来看，华为Mate10将会采用6.2英寸显示屏，屏幕分辨率则为2160
+	        			     </span>
+	        			</div>
+	        			<div class="lb3k">
+	        			     <img src="img/lunbo3_02.jpg"/>
+	        			     <span>
+	        			        <a href="#">2配置确认，华为Mate10国行开启预定</a>
+	        			        <br/>
+	        			     	离华为在德国慕尼黑的发布会越来越近了，关于Mate10系列新机的消息也越来越多了。
+	        			     	近日又有网友在微博上曝光了华为Mate10的线下广告宣传板，其中包含了Mate10部分的配置信息清晰可见。
+	        			     	根据此前曝光的宣传视频来看，华为Mate10将会采用6.2英寸显示屏，屏幕分辨率则为2160
+	        			     </span>
+	        			</div>
+	        			<div class="lb3k">
+	        			     <img src="img/lunbo3_04.jpg"/>
+	        			     <span>
+	        			        <a href="#">3配置确认，华为Mate10国行开启预定</a>
+	        			        <br/>
+	        			     	离华为在德国慕尼黑的发布会越来越近了，关于Mate10系列新机的消息也越来越多了。
+	        			     	近日又有网友在微博上曝光了华为Mate10的线下广告宣传板，其中包含了Mate10部分的配置信息清晰可见。
+	        			     	根据此前曝光的宣传视频来看，华为Mate10将会采用6.2英寸显示屏，屏幕分辨率则为2160
+	        			     </span>
+	        			</div>
+	        			<div class="lb3k">
+	        			     <img src="img/lunbo3_01.jpg"/>
+	        			     <span>
+	        			        <a href="#">1配置确认，华为Mate10国行开启预定</a>
+	        			        <br/>
+	        			     	离华为在德国慕尼黑的发布会越来越近了，关于Mate10系列新机的消息也越来越多了。
+	        			     	近日又有网友在微博上曝光了华为Mate10的线下广告宣传板，其中包含了Mate10部分的配置信息清晰可见。
+	        			     	根据此前曝光的宣传视频来看，华为Mate10将会采用6.2英寸显示屏，屏幕分辨率则为2160
+	        			     </span>
+	        			</div>
+	        		
+	        		</div>
+	        	</div>
+	            <div class="gengduo">
+	            	<a href="#">更多&gt;</a>
+	            </div>
+	        </div>
+	        <div class="box4_05">
+	        	<div class="right_01">
+	        		<div class="nihao">
+	        			<img src="img/nihao.jpg"/>
+	        		</div>
+	        		<p class="pbq">Hi! 你好</p>
+	        		<div class="lthy">
+	        			<span><img src="img/lingtao.png"/>领淘金币抵钱</span>
+	        			<span><img src="img/huiyuan.png"/>会员俱乐部</span>
+	        		</div>
+	        		<div class="dzk">
+	        			<a href="#" style="width: 95px;">登录</a>
+	        			<a href="#">注册</a>
+	        			<a href="#">开店</a>
+	        		</div>
+	        	</div>
+	            <div class="right_02">
+	            	<span>网上有害信息举报专区</span>
+	            	<span class="sanjiao"></span>
+	            </div>
+	            <div class="right_03">
+	            	<ul>
+	            		<li>
+	            			<a href="#" class="a1">公告</a>
+	            			<div class="gonggao">
+	            				<p>1新华社盛赞马云演讲:国家支持是电商繁荣关键</p>
+	            				<p><a href="#">双12引爆特色消费狂欢</a><a href="#">改发委报告赞天猫双11</a></p>
+	            			</div>
+	            		</li>
+	            		<li>
+	            			<a href="#" class="a1">规则</a>
+	            			<div class="gonggao gonggao_01">
+	            				<p>2新华社盛赞马云演讲:国家支持是电商繁荣关键</p>
+	            				<p><a href="#">双12引爆特色消费狂欢</a><a href="#">改发委报告赞天猫双11</a></p>
+	            			</div>
+	            		</li>
+	            		<li>
+	            			<a href="#" class="a1">论坛</a>
+	            			<div class="gonggao gonggao_02">
+	            				<p>3新华社盛赞马云演讲:国家支持是电商繁荣关键</p>
+	            				<p><a href="#">双12引爆特色消费狂欢</a><a href="#">改发委报告赞天猫双11</a></p>
+	            			</div>
+	            		</li>
+	            		<li>
+	            			<a href="#" class="a1">安全</a>
+	            			<div class="gonggao gonggao_03">
+	            				<p>4新华社盛赞马云演讲:国家支持是电商繁荣关键</p>
+	            				<p><a href="#">双12引爆特色消费狂欢</a><a href="#">改发委报告赞天猫双11</a></p>
+	            			</div>
+	            		</li>
+	            		<li>
+	            			<a href="#" class="a1">公益</a>
+	            			<div class="gonggao gonggao_04">
+	            				<p>5新华社盛赞马云演讲:国家支持是电商繁荣关键</p>
+	            				<p><a href="#">双12引爆特色消费狂欢</a><a href="#">改发委报告赞天猫双11</a></p>
+	            			</div>
+	            		</li>
+	            	</ul>
+	            </div>
+	            <div class="right_04">
+	            	<ul>
+	            		<li id="li_01">
+	            			<img src="img/jl_01.jpg" class="riimg"/>
+	            			<a href="#" class="ria">充话费</a>
+	            			<div class="rierji" id="rierji1">
+	            				<div class="cuo" id="cuo1">x</div>
+	            			</div>
+	            		</li>
+	            		<li id="li_02" style="border-left: none;">
+	            			<img src="img/jl_02.jpg" class="riimg"/>
+	            			<a href="#" class="ria">旅行</a>
+	            			<div class="rierji" id="rierji2" style="left: -73px;">
+	            				<div class="cuo" id="cuo2">x</div>
+	            			</div>
+	            		</li>
+	            		<li id="li_03" style="border-left: none;">
+	            			<img src="img/jl_03.jpg" class="riimg"/>
+	            			<a href="#" class="ria">车险</a>
+	            			<div class="rierji" id="rierji3" style="left: -145px;">
+	            				<div class="cuo" id="cuo3">x</div>
+	            			</div>
+	            		</li>
+	            		<li style="width: 72px; border-left: none;" id="li_04">
+	            			<img src="img/jl_04.jpg" class="riimg"/>
+	            			<a href="#" class="ria">游戏</a>
+	            		</li>
+	            		<li style="border-top: none;">
+	            			<img src="img/jl_05.jpg" class="riimg"/>
+	            			<a href="#" class="ria">彩票</a>
+	            		</li>
+	            		<li style="border-left: none; border-top: none;">
+	            			<img src="img/jl_06.jpg" class="riimg"/>
+	            			<a href="#" class="ria">电影</a>
+	            		</li>
+	            		<li style="border-left: none; border-top: none;">
+	            			<img src="img/jl_07.jpg" class="riimg"/>
+	            			<a href="#" class="ria">酒店</a>
+	            		</li>
+	            		<li style="width: 72px; border-left: none; border-top: none;">
+	            			<img src="img/jl_08.jpg" class="riimg"/>
+	            			<a href="#" class="ria">理财</a>
+	            		</li>
+	            		<li style="border-top: none;">
+	            			<img src="img/jl_09.jpg" class="riimg"/>
+	            			<a href="#" class="ria">找服务</a>
+	            		</li>
+	            		<li style="border-left: none; border-top: none;">
+	            			<img src="img/jl_10.jpg" class="riimg"/>
+	            			<a href="#" class="ria">演出</a>
+	            		</li>
+	            		<li style="border-left: none; border-top: none;">
+	            			<img src="img/jl_11.jpg" class="riimg"/>
+	            			<a href="#" class="ria">水电煤</a>
+	            		</li>
+	            		<li style="width: 72px; border-left: none; border-top: none;">
+	            			<img src="img/jl_12.jpg" class="riimg"/>
+	            			<a href="#" class="ria">火车票</a>
+	            		</li>
+	            	</ul>
+	            </div>
+	            <div class="right_05">
+	            	<div class="ali">
+	            		<span>阿里APP</span>
+	            		<a href="#">更多&gt;</a>
+	            	</div>
+	            	<div class="alitu">
+	            		<div class="tupian">
+	            			<img src="img/ali_01.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫淘宝</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_02.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫天猫</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_03.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫聚划算</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_04.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫支付宝</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_05.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫旺旺</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_06.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫钉钉</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_07.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫淘票票</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_08.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫钱盾</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_09.png"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫飞猪旅行</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            		<div class="tupian">
+	            			<img src="img/ali_10.jpg"/>
+	            			<div class="tuer">
+	            				<div class="aliimg">
+	            					<img src="img/aliew.jpg"/>
+	            					<p>扫一扫蚂蚁财富</p>
+	            				</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+	    <!--生活研究所-->
+	    <div class="box5">
+            	<div class="box5_01">
+            		<img src="img/shyjs.png" title="人群研究所"/>
+            		<span>发现属于你的生活</span>
+            	</div>
+            	<div class="box5_02">
+            		<div class="weijing" style="margin-left: 15px;">
+            			<div class="syimg"><img src="img/shyjs_01.png"/></div>
+            			<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气7850144</p>
+            			</div>
+            		</div>
+            		<div class="weijing">
+            			<div class="syimg"><img src="img/shyjs_02.png"/></div>
+            			<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气7850144</p>
+            			</div>
+            		</div>
+            		<div class="weijing">
+            			<div class="syimg"><img src="img/shyjs_03.png"/></div>
+            			<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气7850144</p>
+            			</div>
+            		</div>
+            		<div class="weijing">
+            			<div class="syimg"><img src="img/shyjs_04.png"/></div>
+            		<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气7850144</p>
+            			</div>
+            		</div>
+            		<div class="weijing">
+            			<div class="syimg"><img src="img/shyjs_05.png"/></div>
+            			<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气7850144</p>
+            			</div>
+            		</div>
+            		<div class="weijing">
+            			<div class="syimg"><img src="img/shyjs_06.png"/></div>
+            			<div class="syimg_01">
+            				<p class="p1">囤货小当家</p>
+            				<p class="p2">会囤会生活</p>
+            				<p class="p3"><img src="img/xintu.jpg"/>人气785014</p>
+            			</div>
+            		</div>
+            		
+            	</div>
+        </div>
+	    <!--有好货-->
+	    <div class="box6">
+	        <div class="box6_01">
+	        	<div class="b6_left_01">
+	        		<img src="img/yhh_01.png" class="tu_01"/>
+	        		<span class="tu_02">
+	        			<img src="img/yherwei.jpg"/>
+	        			<div class="erwk"></div>
+	        		</span>
+	        		<span class="tu_sp">与品质生活不期而至</span>
+	        		<a href="#">换一换</a>
+	        	</div>
+	            <div class="b6_left_02">
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_01.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_02.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_03.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_04.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_05.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            	<div class="ykuang">
+	            		<div class="yktu">
+	            			<img src="img/yhtu_06.jpg"/>
+	            		</div>
+	            		<p class="tj_01"><a href="#">唐家欧美 蝙蝠袖针织衫</a></p>
+	            		<p class="tj_02">经典不过时的黑色调，在视</p>
+	            		<p class="tj_03"><img src="img/xiaolian.jpg"/><span>26 人说好</span></p>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="box6_02">
+	            <div class="b6_ri_01">
+	            	<img src="img/yhh_02.png"/>
+	        		<span>献给聪明可爱的你</span>
+	        		<a href="#">更多&gt;</a>
+	            </div>
+	            <div class="b6_ri_02">
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_01.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_02.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_03.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_04.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_05.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            	<div class="ri_tu">
+	            		<div class="ri_tu_img">
+	            			<img src="img/ri_06.jpg"/>
+	            		</div>
+	            		<div class="ri_tu_wb">
+	            			<p><img src="img/ri_sm.jpg"/><a href="#">清香发胶干胶发型定型</a></p>
+	            			<p><a href="#">喷雾男女者喱摩丝啫喱水保</a></p>
+	            			<p class="p_to"><img src="img/ri_rt.jpg"/>爱逛***01</p>
+	            		</div>
+	            	</div>
+	            
+	            </div>
+	        </div>
+	    </div>
+	    <!--淘抢购-->
+	    <div class="box7">
+	    	<div class="tqg">
+	    		<div class="box7_lf">
+	    			<img src="img/tqgb.png"/>
+	    			<span class="jujs">距结束</span>
+	    			<span class="djs"><span id="dspan_01">02</span>:<span id="dspan_02">00</span>:<span id="dspan_03">00</span></span>
+	    		</div>
+	    		<div class="box7_ri">
+	    			<a href="#">换一换</a>
+	    			<a href="#">更多&gt;</a>
+	    		</div>
+	    	</div>
+	        <div class="tqg_xia">
+	        	<div class="shangpin">
+	        		<div class="sptu"><img src="img/tq_01.jpg"/></div>
+	        		<div class="spwb">
+	        			<div class="spwb_01"><p>好想你红枣夹核桃</p><p style="margin-top: 3px;">218g*2袋</p></div>
+	        			<div class="spwb_02"><p class="wb_01">前一千件第二份半价</p><p class="wb_02"><span></span></p><p class="wb_03">7%<span>已抢1079件</span></p></div>
+	        		    <div class="spwb_03"><span class="wb_04">￥</span><span class="wb_05">37.8</span><span class="wb_06">￥169.00</span></div>
+	        		</div>
+	        	</div>
+	        	<div class="shangpin">
+	        		<div class="sptu"><img src="img/tq_02.jpg"/></div>
+	        		<div class="spwb">
+	        			<div class="spwb_01"><p>好想你红枣夹核桃</p><p style="margin-top: 3px;">218g*2袋</p></div>
+	        			<div class="spwb_02"><p class="wb_01">前一千件第二份半价</p><p class="wb_02"><span></span></p><p class="wb_03">7%<span>已抢1079件</span></p></div>
+	        		    <div class="spwb_03"><span class="wb_04">￥</span><span class="wb_05">37.8</span><span class="wb_06">￥169.00</span></div>
+	        		</div>
+	        	</div>
+	        	<div class="shangpin">
+	        		<div class="sptu"><img src="img/tq_03.jpg"/></div>
+	        		<div class="spwb">
+	        			<div class="spwb_01"><p>好想你红枣夹核桃</p><p style="margin-top: 3px;">218g*2袋</p></div>
+	        			<div class="spwb_02"><p class="wb_01">前一千件第二份半价</p><p class="wb_02"><span></span></p><p class="wb_03">7%<span>已抢1079件</span></p></div>
+	        		    <div class="spwb_03"><span class="wb_04">￥</span><span class="wb_05">37.8</span><span class="wb_06">￥169.00</span></div>
+	        		</div>
+	        	</div>
+	        	
+	        </div>
+	    </div>
+	    <!--脱发广告-->
+	    <div class="box8"><img src="img/tuifa.jpg"/></div>
+	    <!--每日好店-->
+	    <div class="box9">
+	    	<div class="box9_left">
+	    		<div class="mr_01">
+	    			<img src="img/mrhd.png" title="每日好店"/>
+	    			<span>发现深藏的好店</span>
+	    			<a href="#">更多&gt;</a>
+	    		</div>
+	    		<div class="mr_02">
+	    			<div class="jrtj">
+	    				<div class="jrtj_01">
+	    					<a href="#">今日推荐</a>
+	    					<span>暂无店铺评价</span>
+	    				</div>
+	    				<div class="jrtj_02">
+	    					<div class="jrtu_01"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jrtu_02">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<div class="jrtj">
+	    				<div class="jrtj_01">
+	    					<a href="#">今日推荐</a>
+	    					<span>暂无店铺评价</span>
+	    				</div>
+	    				<div class="jrtj_02">
+	    					<div class="jrtu_01"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jrtu_02">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<div class="jrtj">
+	    				<div class="jrtj_01">
+	    					<a href="#">今日推荐</a>
+	    					<span>暂无店铺评价</span>
+	    				</div>
+	    				<div class="jrtj_02">
+	    					<div class="jrtu_01"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jrtu_02">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<div class="jrtj">
+	    				<div class="jrtj_01">
+	    					<a href="#">今日推荐</a>
+	    					<span>暂无店铺评价</span>
+	    				</div>
+	    				<div class="jrtj_02">
+	    					<div class="jrtu_01"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jrtu_02">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	
+	    	<div class="box9_rith">
+	    		<div class="jrzb">
+		    		<img src="img/tbzb.png" title="淘宝直播"/>
+		    		<span>你的爱豆直播等你呦！</span>
+	    		</div>
+	    		<div class="zb_02">
+    				<div class="jzb_01">
+    					<div class="jzb_02">
+	    					<a href="#">嫦家二小_</a>
+	    					<span>5422观看</span>
+	    				</div>
+	    				<div class="jzb_03">
+	    					<div class="jzb_04"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jzb_05">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+    				</div>
+    				<div class="jzb_01">
+    					<div class="jzb_02">
+	    					<a href="#">嫦家二小_</a>
+	    					<span>5422观看</span>
+	    				</div>
+	    				<div class="jzb_03">
+	    					<div class="jzb_04"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jzb_05">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+    				</div>
+    				<div class="jzb_01">
+    					<div class="jzb_02">
+	    					<a href="#">嫦家二小_</a>
+	    					<span>5422观看</span>
+	    				</div>
+	    				<div class="jzb_03">
+	    					<div class="jzb_04"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jzb_05">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+    				</div>
+    				<div class="jzb_01">
+    					<div class="jzb_02">
+	    					<a href="#">嫦家二小_</a>
+	    					<span>5422观看</span>
+	    				</div>
+	    				<div class="jzb_03">
+	    					<div class="jzb_04"><img src="img/jrtj_01.jpg"/></div>
+	    					<div class="jzb_05">
+	    						<img src="img/jrtj_02.jpg"/>
+	    						<img src="img/jrtj_03.jpg"/>
+	    					</div>
+	    				</div>
+    				</div>
+	    		
+	    		</div>
+	    	</div>
+	    </div>
+	    <!--时尚爆料王-->
+	    <div class="box10">
+	    	<div class="box10_01">
+	    		<div class="b10_sh">
+	    			<p>时尚爆料王</p>
+	    		</div>
+	    		<div class="b10_le">
+	    			<div class="qd">
+	    				<div class="qd_01">
+	    					<p class="qd_02"><a href="#">腔调</a></p>
+	    					<p class="qd_03">全球创意设计师平台</p>
+	    				</div>
+	    				<div class="qd_04">
+	    					<img src="img/qd_01.png"/>
+	    					<img src="img/qd_02.png"/>
+	    				</div>
+	    			</div>
+	    			<div class="qd">
+	    				<div class="qd_01">
+	    					<p class="qd_02"><a href="#">全球购</a></p>
+	    					<p class="qd_03">探索全球美好生活</p>
+	    				</div>
+	    				<div class="qd_04">
+	    					<img src="img/qd_03.png"/>
+	    					<img src="img/qd_04.png"/>
+	    				</div>
+	    			</div>
+	    			<div class="qd bianse">
+	    				<div class="qd_01">
+	    					<p class="qd_02"><a href="#">魅力惠</a></p>
+	    					<p class="qd_03">奢品好物立即购</p>
+	    				</div>
+	    				<div class="qd_04">
+	    					<img src="img/qd_05.png"/>
+	    					<img src="img/qd_06.png"/>
+	    				</div>
+	    			</div>
+	    		
+	    		</div>
+	    	</div>
+	        <div class="box10_02">
+	        	<div class="qd_05">
+	        		<img src="img/qd_07.jpg"/>
+	        	</div>
+	        </div>
+	    </div>
+	    <!--品质生活家-->
+	    <div class="box11">
+	    	<div class="pzsh_01">
+	    		<div class="pzhi_01">
+	    			<p>品质生活家</p>
+	    		</div>
+	    		<div class="pzsh_02">
+	    			<div class="pzsh_03">
+	    				<div class="pzsh_04">
+	    					<img src="img/pz_01.png"/>
+	    				</div>
+	    				<div class="pzsh_05">
+	    					<div class="jyj">
+		    					<p class="pzsh_06">极有家</p>
+		    					<p class="pzsh_07">过我想要的生活</p>
+	    					</div>
+	    					<img src="img/pz_02.png"/>
+	    				</div>
+	    				<div class="pzsh_05">
+	    					<div class="jyj">
+		    					<p class="pzsh_06">淘宝花鸟</p>
+		    					<p class="pzsh_07">园艺宠物爱好者集中营</p>
+	    					</div>
+	    					<img src="img/pz_03.png"/>
+	    				</div>
+	    				<div class="pzsh_05">
+	    					<div class="jyj">
+		    					<p class="pzsh_06">聚名品</p>
+		    					<p class="pzsh_07">甄选大牌尖货</p>
+	    					</div>
+	    					<img src="img/pz_04.png"/>
+	    				</div>
+	    			</div>
+	    		    <div class="qbb_01">
+	    		    	<div class="qbb_02">
+	    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+	    		    		<div class="qbb_03">
+	    		    			<img src="img/qibb_01.png"/>
+	    		    			<img src="img/qibb_02.png"/>
+	    		    		</div>
+	    		    	</div>
+	    		        <div class="qbb_02">
+	    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+	    		    		<div class="qbb_03">
+	    		    			<img src="img/qibb_01.png"/>
+	    		    			<img src="img/qibb_02.png"/>
+	    		    		</div>
+	    		    	</div>
+	    		    	<div class="qbb_02">
+	    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+	    		    		<div class="qbb_03">
+	    		    			<img src="img/qibb_01.png"/>
+	    		    			<img src="img/qibb_02.png"/>
+	    		    		</div>
+	    		    	</div>
+	    		    </div>	
+	    		</div>
+	    	</div>
+	        
+	        <div class="tese_01">
+	        	<div class="pzsh_01">
+		    		<div class="pzhi_01">
+		    			<p style="color: #ff5000; border-left: 5px solid #ff5000;">特色玩味控</p>
+		    		</div>
+		    		<div class="pzsh_02">
+		    			<div class="pzsh_03">
+		    				<div class="pzsh_04">
+		    					<img src="img/pz_01.png"/>
+		    				</div>
+		    				<div class="pzsh_05">
+		    					<div class="jyj">
+			    					<p class="pzsh_06">极有家</p>
+			    					<p class="pzsh_07">过我想要的生活</p>
+		    					</div>
+		    					<img src="img/pz_02.png"/>
+		    				</div>
+		    				<div class="pzsh_05">
+		    					<div class="jyj">
+			    					<p class="pzsh_06">淘宝花鸟</p>
+			    					<p class="pzsh_07">园艺宠物爱好者集中营</p>
+		    					</div>
+		    					<img src="img/pz_03.png"/>
+		    				</div>
+		    				<div class="pzsh_05">
+		    					<div class="jyj">
+			    					<p class="pzsh_06">聚名品</p>
+			    					<p class="pzsh_07">甄选大牌尖货</p>
+		    					</div>
+		    					<img src="img/pz_04.png"/>
+		    				</div>
+		    			</div>
+		    		    <div class="qbb_01">
+		    		    	<div class="qbb_02">
+		    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+		    		    		<div class="qbb_03">
+		    		    			<img src="img/qibb_01.png"/>
+		    		    			<img src="img/qibb_02.png"/>
+		    		    		</div>
+		    		    	</div>
+		    		        <div class="qbb_02">
+		    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+		    		    		<div class="qbb_03">
+		    		    			<img src="img/qibb_01.png"/>
+		    		    			<img src="img/qibb_02.png"/>
+		    		    		</div>
+		    		    	</div>
+		    		    	<div class="qbb_02">
+		    		    		<div class="xsxfs"><a href="#">亲宝贝</a><span>享受育儿新方式</span></div>
+		    		    		<div class="qbb_03">
+		    		    			<img src="img/qibb_01.png"/>
+		    		    			<img src="img/qibb_02.png"/>
+		    		    		</div>
+		    		    	</div>
+		    		    </div>	
+		    		</div>
+	            </div>
+	        </div>
+	    </div>
+	    <!--实惠专业户-->
+	    <div class="box12">
+	    	<div class="shihui_01">
+	    		<p>实惠专业户</p>
+	    	</div>
+	    	<div class="shihui_02">
+	    		<div class="Ttj">
+	    			<p class="Tp_01"><a href="#">天天特价</a></p>
+	    			<div class="Ttu"><img src="img/tttj_01.jpg"/></div>
+	    			<div class="Tp_02">
+	    				<p class="qc_01">优惠好货</p>
+	    				<p class="qc_02">特价专区</p>
+	    				<p class="qc_03">全场包邮</p>
+	    			</div>
+	    		</div>
+	    	    <div class="Ttj">
+	    			<p class="Tp_01"><a href="#">淘金币</a></p>
+	    			<div class="Ttu"><img src="img/tttj_02.png"/></div>
+	    			<div class="Tp_02">
+	    				<p class="qc_01">异域风味</p>
+	    				<p class="qc_02">台湾美味</p>
+	    				<p class="qc_03">签到领金币</p>
+	    			</div>
+	    		</div>
+	    		<div class="Ttj">
+	    			<p class="Tp_01"><a href="#">量贩团</a></p>
+	    			<div class="Ttu"><img src="img/tttj_03.jpg"/></div>
+	    			<div class="Tp_02">
+	    				<p class="qc_01">大包装囤货</p>
+	    				<p class="qc_02">超值付邮领</p>
+	    				<p class="qc_03">0.01元疯抢</p>
+	    			</div>
+	    		</div>
+	    		<div class="Ttj">
+	    			<p class="Tp_01"><a href="#">品牌outlets</a></p>
+	    			<div class="Ttu"><img src="img/tttj_04.jpg"/></div>
+	    			<div class="Tp_02">
+	    				<p class="qc_01">免息购大牌</p>
+	    				<p class="qc_02">臻选尖货</p>
+	    				<p class="qc_03">365天超低价</p>
+	    			</div>
+	    		</div>
+	    		<div class="Ttj" style="width: 238px;">
+	    			<p class="Tp_01"><a href="#">阿里试用</a></p>
+	    			<div class="Ttu"><img src="img/tttj_05.png"/></div>
+	    			<div class="Tp_02">
+	    				<p class="qc_01">0元免费试</p>
+	    				<p class="qc_02">大牌新品</p>
+	    				<p class="qc_03">先用后买</p>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    <!--热卖单品-->
+	    <div class="box13">
+	    	<div class="box13_01">
+	    		<p>热卖单品</p>
+	    		<div class="rmcd">
+	    			<div class="rm_a">
+		    			<a href="#">客厅灯</a>
+		    			<a href="#">床垫</a>
+		    			<a href="#">冲锋衣</a>
+		    			<a href="#">沙发垫</a>
+		    			<a href="#">电脑椅</a>
+		    			<a href="#">大闸蟹</a>
+		    			<a href="#">男内裤</a>
+		    			<a href="#">窗帘</a>
+		    			<a href="#">皮带</a>
+		    			<a href="#">鞋柜</a>
+		    			<a href="#">沙发</a>
+		    			<a href="#">夹克</a>
+		    			<a href="#">茶几</a>
+		    			<a href="#">运动鞋</a>
+		    			<a href="#">衣柜</a>
+		    			<a href="#">牛仔裤</a>
+		    			<a href="#">男裤</a>
+		    			<a href="#">电脑桌</a>
+		    			<a href="#">拉杆箱</a>
+		    			<a href="#">椅子</a>
+		    			<a href="#">保温杯</a>
+		    			<a href="#">男包</a>
+		    			<a href="#">打底衫</a>
+		    			<a href="#">阔腿裤</a>
+	    			</div>
+	    			<span>广告</span>
+	    		</div>
+	    	</div>
+	        <div class="box13_02">
+	        	<div class="xiyou">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_ri">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_top">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_top">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_top">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_top">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        	<div class="xiyou xiyou_ri xiyou_top">
+	        		<div class="xiyou_01"><img src="img/remai_01.jpg"/></div>
+	        		<div class="xiyou_02">
+	        			<p class="xy_01"><span>包邮</span>减肥咖啡大家发的卡复活跨境电商空间</p>
+	        			<p class="xy_02"><a href="#">评价 0</a><a href="#" style="margin-left: 10px;">收藏 66</a></p>
+	        			<p class="xy_03">
+	        				<a href="#" class="xy_a1"><span>￥</span>358</a>
+	        				<span class="xy_a2">￥990</span>
+	        				<a href="#" class="xy_a3">月销15笔</a>
+	        			</p>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div class="box13_03">
+	        	<div class="dp_img"><img src="img/dp_01.jpg"/></div>
+	        	<div class="dp_img"><img src="img/dp_02.jpg"/></div>
+	        	<div class="dp_img"><img src="img/dp_03.jpg"/></div>
+	        </div>
+	    </div>
+	    <!--猜你喜欢-->
+	    <div class="box14">
+	    	<div class="box14_01">
+	    		<p>猜你喜欢</p>
+	    	</div>
+	    	<div class="box14_02" id="box14_02">
+	    		<!--<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		
+	    		<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="xiazhuang">
+	    			<img src="img/cnxh_01.png"/>
+	    			<p class="xz_01">大码夏装女胖mm2017新款连体阔腿裤套装藏肉胖妹妹微胖女装显瘦hx</p>
+	    			<p class="xz_02">
+	    				<span class="xz_03">HOT</span>
+	    				<span class="xz_04">￥</span><span class="xz_05">299</span>
+	    				<span class="xz_06">销量:1</span>
+	    			</p>
+	    			<div class="xz_07">
+	    				<div class="xz_07_01">
+		    				<p class="zxs_01"><img src="img/xin.jpg"/><span>找相似</span></p>
+		    				<p class="zxs_02">发现更多相似的宝贝&gt;</p>
+	    				</div>
+	    			</div>
+	    		</div>-->
+	    	
+	    	</div>
+	    
+	    </div>	
+	    <!--END-->
+	    <div class="box15">
+	    	<div class="box15_01">
+	    		<span class="b15_01"></span>
+	    		<span class="b15_02">END</span>
+	    		<span class="b15_01"></span>
+	    	</div>
+	    	<div class="box15_02">
+    			<div class="xf_02">
+    				<p class="bz_01"><img src="img/dunpai_01.jpg"/><span>消费者保障</span></p>
+    				<p class="bz_02"><a href="#">保障范围</a><a href="#">退货退款流程</a><a href="#">服务中心</a></p>
+    				<p class="bz_02"><a href="#">更多特色服务</a></p>
+    			</div>
+    			<div class="xf_02">
+    				<p class="bz_01"><img src="img/dunpai_02.jpg"/><span>新手上路</span></p>
+    				<p class="bz_02"><a href="#">新手专区</a><a href="#">消费警示</a><a href="#">交易安全</a></p>
+    				<p class="bz_02"><a href="#">24小时在线帮助</a><a href="#">免费开店</a></p>
+    			</div>
+    			<div class="xf_02">
+    				<p class="bz_01"><img src="img/dunpai_03.jpg"/><span>付款方式</span></p>
+    				<p class="bz_02"><a href="#">快捷支付</a><a href="#">信用卡</a><a href="#">余额宝</a><a href="#">蚂蚁花呗</a></p>
+    				<p class="bz_02"><a href="#">货到付款</a></p>
+    			</div>
+    			<div class="xf_02">
+    				<p class="bz_01"><img src="img/dunpai_04.jpg"/><span>消费者保障</span></p>
+    				<p class="bz_02"><a href="#">手机淘宝</a><a href="#">旺旺/旺信</a><a href="#">大众评审</a></p>
+    			</div>
+	    	</div>
+	    </div>
+	    <!--最后文本-->
+	    <div class="box16">
+	    	<div class="box16_01">
+	    		<div class="b16_01">
+	    			<p>
+	    				<a href="#">阿里巴巴集团</a>
+	    				<span></span>
+	    				<a href="#">淘宝网</a>
+	    				<span></span>
+	    				<a href="#">天猫</a>
+	    				<span></span>
+	    				<a href="#">聚划算</a>
+	    				<span></span>
+	    				<a href="#">全球速卖通</a>
+	    				<span></span>
+	    				<a href="#">阿里巴巴国际交易市场</a>
+	    				<span></span>
+	    				<a href="#">1688</a>
+	    				<span></span>
+	    				<a href="#">阿里妈妈</a>
+	    				<span></span>
+	    				<a href="#">飞猪</a>
+	    				<span></span>
+	    				<a href="#">阿里云计算</a>
+	    				<span></span>
+	    				<a href="#">YunOS</a>
+	    				<span></span>
+	    				<a href="#">阿里通信</a>
+	    				<span></span>
+	    				<a href="#">一淘</a>
+	    				<span></span>
+	    				<a href="#">万网</a>
+	    				<span></span>
+	    				<a href="#">高德</a>
+	    				<span></span>
+	    				<a href="#">UC</a>
+	    				<span></span>
+	    				<a href="#">友盟</a>
+	    			</p>
+	    			<p>
+	    				<a href="#">虾米</a>
+	    				<span></span>
+	    				<a href="#">大麦网</a>
+	    				<span></span>
+	    				<a href="#">钉钉</a>
+	    				<span></span>
+	    				<a href="#">支付宝</a>
+	    				<span></span>
+	    				<a href="#">优酷</a>
+	    				<span></span>
+	    				<a href="#">土豆</a>
+	    				<span></span>
+	    				<a href="#">阿里健康</a>
+	    				<span></span>
+	    				<a href="#">阿里影业</a>
+	    				<span></span>
+	    				<a href="#">阿里体育</a>
+	    				<span></span>
+	    				<a href="#">网商银行</a>
+	    			</p>
+	    		</div>
+	    	    <div class="b16_02">
+	    	    	<p class="p_01">
+	    	    		<a href="#">关于淘宝</a>
+	    	    		<a href="#">合作伙伴</a>
+	    	    		<a href="#">营销中心</a>
+	    	    		<a href="#">廉正举报</a>
+	    	    		<a href="#">联系客服</a>
+	    	    		<a href="#">开放平台</a>
+	    	    		<a href="#">诚征英才</a>
+	    	    		<a href="#">联系我们</a>
+	    	    		<a href="#">网站地图</a>
+	    	    		<a href="#">法律声明及隐私权政策</a>
+	    	    		<a href="#" style="margin-right: 11px;">知识产权</a>
+	    	    		<span></span>
+	    	    		<a style="color: #9c9c9c; margin-left: 40px;">&copy; 2003-2017 Taobao.com 版权所有</a>
+	    	    	</p>
+	    	    	<p class="p_02">
+	    	    		<a href="#">网络文化经营许可证：浙网文[2013]0268-027号</a>
+	    	    		<span></span>
+	    	    		<a href="#">增值电信业务经营许可证：浙B2-20080224</a>
+	    	    		<span></span>
+	    	    		<a style="color: #9c9c9c; margin: 0px 4px 0px 4px;">信息网络传播视听节目许可证：1109364号</a>
+	    	    		<span></span>
+	    	    		<a style="color: #9c9c9c; margin: 0px 4px 0px 4px;">互联网违法和不良信息举报电话：0571-81683755 blxxjb@alibaba-inc.com</a>
+	    	    	</p>
+	    	    	<p class="p_03">
+	    	    		<img src="img/jinghui.jpg"/>
+	    	    		<a href="#">浙公网安备 33010002000078号</a>
+	    	    	</p>
+	    	    </div>
+	    	    <div class="b16_03">
+	    	    	<img src="img/zh_01.jpg" style="margin-left: 0px;"/>
+	    	    	<img src="img/zh_02.jpg"/>
+	    	    	<img src="img/zh_03.jpg"/>
+	    	    	<img src="img/zh_04.jpg"/>
+	    	    	<img src="img/zh_05.jpg"/>
+	    	    	<img src="img/zh_06.jpg"/>
+	    	    	<img src="img/zh_07.jpg"/>
+	    	    	<img src="img/zh_08.jpg"/>
+	    	    	<img src="img/zh_09.jpg"/>
+	    	    	<img src="img/zh_10.jpg"/>
+	    	    	<img src="img/zh_11.jpg" style="margin-left: 0px;"/>
+	    	    </div>
+	    	</div>
+	    </div>
+	</body>
+</html>
