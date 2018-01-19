@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				user-select:none;
+			}
+			div{
+				width: 300px;
+				height: 200px;
+				background-color: blanchedalmond;
+				margin: 0 auto;
+				position: relative;
+			}
+			div ul{
+				width: 300px;
+			}
+			div li{
+				list-style: none;
+				width: 280px;
+				height: 25px;
+				text-align: right;
+				margin-top: 5px;
+			}
+			h3{
+				width: 300px;
+				text-align: center;
+			}
+			#g1,#g2,#g3,#gg{
+				color: blanchedalmond;
+			}
+			#yzm{
+				display: inline-block;
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				background-color: darkgrey;
+				border: 1px solid black;
+				font-size: 14px;
+				font-family: "微软雅黑";
+				position: absolute;
+				left: 130px;
+			}
+			#zc{
+				margin-top: 10px;
+				position: absolute;
+				left: 128px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+			<h3>注册页面</h3>
+				<li>
+					<label for="yonghu">用户名：</label>
+					<input type="text" placeholder="长度6至20位" id="yonghu" onblur="yh()"/>
+					<span id="g1">√</span>
+				</li>
+				<li>
+					<label for="mima1">密码：</label>
+					<input type="password" id="mima1"/>
+					<span id="gg">√</span>
+				</li>
+				<li>
+					<label for="mima2">确认密码：</label>
+					<input type="password" id="mima2" onblur="mm()"/>
+					<span id="g2">√</span>
+				</li>
+				<li>
+					<label for="yz">验证码：</label>
+					<input type="text" id="yz" onblur="yanzhengma()"/>
+					<span id="g3">√</span>
+				</li>
+				<span onclick="but()" id="yzm"></span>
+				<br/>
+				<button onclick="but2()" id="zc">确认注册</button>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function yh(){
+			var yonghu = document.getElementById("yonghu");
+			var g1 = document.getElementById("g1");
+			if(yonghu.value.length>=6 && yonghu.value.length<=20){
+                g1.innerHTML="√";
+                g1.style.color="sandybrown";
+			}else{
+                g1.innerHTML="×";
+                g1.style.color="red";
+			}
+		}
+		function mm(){
+			var mima1 = document.getElementById("mima1");
+			var mima2 = document.getElementById("mima2");
+			var g2 = document.getElementById("g2");
+			if(mima1.value==mima2.value){
+				g2.innerHTML="√";
+				g2.style.color="sandybrown";
+			}else{
+				g2.innerHTML="×";
+				g2.style.color="red";
+			}
+		}
+		but();
+		function but(){
+			var yzm = document.getElementById("yzm");
+			var num1 = parseInt(Math.random()*10);
+			var num2 = parseInt(Math.random()*10);
+			var num3 = String.fromCharCode(parseInt(Math.random()*26)+65);
+			var num4 = String.fromCharCode(parseInt(Math.random()*26)+65);
+			yzm.innerHTML=num1+num3+num2+num4;
+		}
+		function yanzhengma(){
+			var yz = document.getElementById("yz");
+			var yzm = document.getElementById("yzm");
+			var g3 = document.getElementById("g3");
+			var a = yz.value.toUpperCase();
+			if(a==yzm.innerHTML){
+				g3.innerHTML="√";
+				g3.style.color="sandybrown";
+			}else{
+				g3.innerHTML="×";
+				g3.style.color="red";
+			}
+		}
+		function but2(){
+			var g1 = document.getElementById("g1");
+			var g2 = document.getElementById("g2");
+			var g3 = document.getElementById("g3");
+			if(g1.innerHTML=="√" && g2.innerHTML=="√" && g3.innerHTML=="√"){
+				window.location.href="练习.html";
+			}else{
+				alert("注册失败！");
+			}
+		}
+	</script>
+</html>
